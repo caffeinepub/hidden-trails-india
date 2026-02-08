@@ -1,0 +1,40 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Destination Detail: Add Hotels/Airbnb lodging and Local Transport sections",
+  "requirements": [
+    {
+      "id": "REQ-29",
+      "summary": "Extend the Destination Detail “Where to Stay” content with explicit Hotels and Airbnb lodging subsections in English, matching existing Card/card-glow styling.",
+      "acceptanceCriteria": [
+        "On the destination detail route (/destinations/$slug), the content includes clearly labeled lodging subsections that explicitly mention “Hotels” and “Airbnb”.",
+        "All user-facing text added for these sections is in English.",
+        "The new lodging content matches the existing visual system (Card/card-glow, typography scale, spacing) used elsewhere on the page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DestinationDetailPage.tsx",
+          "operation": "modify",
+          "description": "Update the existing “Where to Stay” section to include dedicated, clearly headed subsections for “Hotels” and “Airbnb” (alongside the current homestays/guesthouses content), using existing shadcn/ui Card composition patterns (Card/CardHeader/CardTitle/CardContent), existing spacing/typography, and keeping all added guidance text in English. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-30",
+      "summary": "Add a new “Local Transport” section on Destination Detail pages with Rent a Bike and Cab/Taxi options, using MotionReveal, Cards, icons, and placeholder CTAs.",
+      "acceptanceCriteria": [
+        "A new section titled “Local Transport” appears on the destination detail page as part of the main content flow.",
+        "The section includes at minimum: (1) Rent a Bike and (2) Cab/Taxi options, each described with short, scannable text.",
+        "Any CTAs in this section are placeholders (non-navigating), consistent with the existing AffiliateCtaPlaceholder behavior.",
+        "The section is visually consistent with existing sections and uses the existing motion/reveal pattern (MotionReveal) like other sections on the page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DestinationDetailPage.tsx",
+          "operation": "modify",
+          "description": "Insert a new main-flow section titled “Local Transport” (wrapped in MotionReveal) that presents at least two Card-based options: “Rent a Bike” and “Cab/Taxi”, each with a relevant icon and short scannable guidance text, and optional non-navigating placeholder CTAs implemented via the existing AffiliateCtaPlaceholder component (no real booking links or tracking). Use existing Card/card-glow styling and separators to match the page’s visual system. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

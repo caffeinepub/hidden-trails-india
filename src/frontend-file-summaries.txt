@@ -1,0 +1,19 @@
+{
+  "frontend/src/index.css": "Global styles with OKLCH color system, hero parallax GPU acceleration, premium btn-glow effect, and complete line-sketch animation keyframes with reduced-motion and mobile optimization.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending the theme with custom fonts (Inter, Outfit), colors mapped to CSS variables, and consistent design tokens for the Hidden Trails India brand.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, ThemeProvider wrapper, and routes for home, destinations, destination details, blog, and blog posts with shared header/footer layout.",
+  "frontend/src/components/SiteHeader.tsx": "Sticky navigation header with logo, desktop/mobile navigation menus, and theme toggle; uses shadcn/ui Sheet component for mobile drawer.",
+  "frontend/src/components/SiteFooter.tsx": "Site footer with brand info, navigation links, and attribution to caffeine.ai with heart icon; no email capture or newsletter signup.",
+  "frontend/src/components/ThemeToggle.tsx": "Dark mode toggle button using next-themes with dropdown menu for light/dark/system theme selection.",
+  "frontend/src/components/AffiliateCtaPlaceholder.tsx": "Reusable placeholder component for affiliate CTAs (booking, gear, insurance) with title, description, and external link button; no email capture.",
+  "frontend/src/pages/HomePage.tsx": "Homepage with hero section, differentiators, featured destinations grid, budget categories, and CTAs focused on on-site exploration; no email forms or lead magnets.",
+  "frontend/src/pages/DestinationsPage.tsx": "Destination listing page with search, budget filter tabs, and grid of destination cards linking to detail pages; no email capture or gated content.",
+  "frontend/src/pages/DestinationDetailPage.tsx": "Comprehensive destination detail page with snapshot, logistics, itinerary, budget breakdown, expanded lodging section (homestays, guesthouses, hotels, and Airbnb), new local transport section (bike rentals and cab/taxi services), FAQ accordion, and affiliate CTA placeholders; no email requirements.",
+  "frontend/src/pages/BlogPage.tsx": "Blog listing page with featured post, grid of blog articles, and CTA to explore destinations; no newsletter signup or email capture.",
+  "frontend/src/pages/BlogPostPage.tsx": "Individual blog post page with article content, metadata, share button, and related posts section; no email forms.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder file for future React Query hooks to interact with backend; currently empty as backend has no methods defined.",
+  "frontend/src/components/RippleButton.tsx": "A button wrapper component that adds a ripple click effect animation to the shadcn Button component, properly typed using ComponentPropsWithoutRef to inherit all Button props.",
+  "frontend/src/hooks/useParallax.ts": "Enhanced parallax hook with GPU-accelerated transforms, IntersectionObserver gating, clamped 25px max translation, mobile intensity reduction (60%), and full disablement for reduced-motion and low-performance devices.",
+  "frontend/src/components/CinematicHero.tsx": "Cinematic hero section with parallax background video, atmospheric overlays, animated line sketch layer positioned between atmosphere and glass, and static content with premium CTA buttons.",
+  "frontend/src/components/HeroLineSketchOverlay.tsx": "SVG-based animated topographic line sketch overlay with subtle drift and dash animations, responsive mobile simplification, premium travel-path animation, and full prefers-reduced-motion support."
+}

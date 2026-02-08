@@ -1,0 +1,41 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-destination-detail-page-ui-to-include-a-dedicated-lodging-section-that-explicitly-covers-hotels-and-airbnb-options-in-addition-to-any-existing-homestay-guesthouse-content-with-clear-headings-and-concise-guidance-in-english",
+      "featureTitle": "Update the Destination Detail page UI to include a dedicated lodging section that explicitly covers “Hotels” and “Airbnb” options (in addition to any existing homestay/guesthouse content), with clear headings and concise guidance in English.",
+      "files": [
+        "frontend/src/pages/DestinationDetailPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-29"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-new-local-transport-section-to-the-destination-detail-page-that-covers-common-options-such-as-renting-a-bike-and-hiring-a-cab-taxi-using-the-existing-component-patterns-cards-icons-and-affiliatectaplaceholder-style-cta-placeholders-where-appropriate",
+      "featureTitle": "Add a new “Local Transport” section to the Destination Detail page that covers common options such as renting a bike and hiring a cab/taxi, using the existing component patterns (Cards, icons, and AffiliateCtaPlaceholder-style CTA placeholders where appropriate).",
+      "files": [
+        "frontend/src/pages/DestinationDetailPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-30"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

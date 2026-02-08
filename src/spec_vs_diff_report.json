@@ -1,0 +1,14 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T09:05:47.957Z",
+  "summary": "Diff summary indicates DestinationDetailPage was updated to add an expanded lodging section explicitly covering Hotels and Airbnb, and a new Local Transport section with bike rental and cab/taxi options, using existing Card/MotionReveal/AffiliateCtaPlaceholder patterns. No evidence of disallowed email capture or real third-party booking integrations is shown in the provided diff summary.",
+  "missing_requirements": [],
+  "hallucinated_features": [],
+  "confidence": 0.66,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/pages/DestinationDetailPage.tsx",
+    "project_state.json"
+  ]
+}

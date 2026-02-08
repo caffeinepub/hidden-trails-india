@@ -1,0 +1,48 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T09:05:47.960Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-29",
+        "summary": "Update the Destination Detail page UI to include a dedicated lodging section that explicitly covers “Hotels” and “Airbnb” options (in addition to any existing homestay/guesthouse content), with clear headings and concise guidance in English.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/DestinationDetailPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DestinationDetailPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-30",
+        "summary": "Add a new “Local Transport” section to the Destination Detail page that covers common options such as renting a bike and hiring a cab/taxi, using the existing component patterns (Cards, icons, and AffiliateCtaPlaceholder-style CTA placeholders where appropriate).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/DestinationDetailPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DestinationDetailPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/pages/DestinationDetailPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
