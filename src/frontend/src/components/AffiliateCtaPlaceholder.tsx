@@ -23,8 +23,8 @@ export default function AffiliateCtaPlaceholder({
       </CardHeader>
       <CardContent>
         <Button variant={variant} className="w-full" asChild>
-          <a href="#" onClick={(e) => e.preventDefault()}>
-            {ctaText}
+          <a href="#" onClick={(e) => e.preventDefault()} className="justify-center">
+            <span className="text-center">{ctaText}</span>
             <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </Button>

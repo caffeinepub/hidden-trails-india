@@ -5,7 +5,7 @@
   "frontend/src/components/SiteHeader.tsx": "Sticky navigation header with logo, desktop/mobile navigation menus, and theme toggle; uses shadcn/ui Sheet component for mobile drawer.",
   "frontend/src/components/SiteFooter.tsx": "Site footer with brand info, navigation links, and attribution to caffeine.ai with heart icon; no email capture or newsletter signup.",
   "frontend/src/components/ThemeToggle.tsx": "Dark mode toggle button using next-themes with dropdown menu for light/dark/system theme selection.",
-  "frontend/src/components/AffiliateCtaPlaceholder.tsx": "Reusable placeholder component for affiliate CTAs (booking, gear, insurance) with title, description, and external link button; no email capture.",
+  "frontend/src/components/AffiliateCtaPlaceholder.tsx": "Reusable placeholder component for affiliate CTAs (booking, gear, insurance) with title, description, and external link button with centered text alignment; no email capture.",
   "frontend/src/pages/HomePage.tsx": "Homepage with hero section, differentiators, featured destinations grid, budget categories, and CTAs focused on on-site exploration; no email forms or lead magnets.",
   "frontend/src/pages/DestinationsPage.tsx": "Destination listing page with search, budget filter tabs, and grid of destination cards linking to detail pages; no email capture or gated content.",
   "frontend/src/pages/DestinationDetailPage.tsx": "Comprehensive destination detail page with snapshot, logistics, itinerary, budget breakdown, expanded lodging section (homestays, guesthouses, hotels, and Airbnb), new local transport section (bike rentals and cab/taxi services), FAQ accordion, and affiliate CTA placeholders; no email requirements.",

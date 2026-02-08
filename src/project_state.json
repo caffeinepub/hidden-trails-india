@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 13,
+  "projectStateVersion": 15,
   "summary": "Build \"Hidden Trails India\", an SEO-driven travel content + affiliate discovery platform for offbeat Indian destinations (18–35 audience), monetized via affiliate integrations/conversions; redesign UI into a vibrant, immersive, youth-focused cinematic/Instagram-meets-startup experience (dark base + vibrant accents, motion/micro-interactions), with all email capture/lead-magnet email list features explicitly removed.",
   "architectural_notes": [
     "Email functionality is out of scope: do not include any email capture, lead magnet forms requiring email, or email list growth flows.",
@@ -243,6 +243,14 @@
       "title": "Add a new “Local Transport” section to the Destination Detail page that covers common options such as renting a bike and hiring a cab/taxi, using the existing component patterns (Cards, icons, and AffiliateCtaPlaceholder-style CTA placeholders where appropriate).",
       "reqIds": [
         "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-element-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-div-1-section-1-div-5-button-1-div-1-span-1-so-that-it-is-visually-centered-within-the-app-layout-center-aligned-within-its-available-width-apply-styling-changes-only-to-this-span-e-g-make-it-full-width-and-center-its-text-without-moving-resizing-or-restyling-other-elements",
+      "title": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within the app layout (center-aligned within its available width). Apply styling changes only to this `<span>` (e.g., make it full-width and center its text) without moving, resizing, or restyling other elements.",
+      "reqIds": [
+        "REQ-31"
       ],
       "version": 1
     }

@@ -1,10 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Enhance Destination Detail pages with clear lodging and local transport guidance.
+**Goal:** Center-align the label text of the currently selected button’s `<span>` within its available width.
 
 **Planned changes:**
-- Update the Destination Detail page (/destinations/$slug) to add a dedicated lodging section with explicit subsections for “Hotels” and “Airbnb” (in English), aligned with existing Card/card-glow styling, typography, and spacing.
-- Add a new “Local Transport” section in the main content flow, covering at minimum “Rent a Bike” and “Cab/Taxi” with short, scannable descriptions, using existing patterns (Cards, icons, MotionReveal) and placeholder CTAs consistent with AffiliateCtaPlaceholder behavior.
+- Apply styling changes only to the targeted `<span>` at the provided XPath to make it occupy the available width and center its text content.
+- Ensure no other elements’ layout, spacing, sizing, or styling are changed.
 
-**User-visible outcome:** On each destination detail page, users can read structured, English guidance about Hotels/Airbnb lodging options and local transport (bike rental and cab/taxi), with consistent UI and non-navigating placeholder CTAs.
+**User-visible outcome:** The selected button label text appears visually centered (not left-aligned) in its current UI context, with no other visible changes.

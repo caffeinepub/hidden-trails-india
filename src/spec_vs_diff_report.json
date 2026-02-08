@@ -1,14 +1,54 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T09:05:47.957Z",
-  "summary": "Diff summary indicates DestinationDetailPage was updated to add an expanded lodging section explicitly covering Hotels and Airbnb, and a new Local Transport section with bike rental and cab/taxi options, using existing Card/MotionReveal/AffiliateCtaPlaceholder patterns. No evidence of disallowed email capture or real third-party booking integrations is shown in the provided diff summary.",
-  "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.66,
+  "generatedAt": "2026-02-08T11:07:23.601Z",
+  "summary": "REQ-31 is not fully satisfied based on the diff summary: the change is not clearly limited to the specific XPath-selected <span>, and additional styling/behavior appears to be applied to surrounding elements. The <span> is given `text-center`, but there is no evidence it is made full-width/block to ensure centering within available width.",
+  "missing_requirements": [
+    {
+      "id": "REQ-31",
+      "requirement": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within its available width, applying styling changes only to this `<span>`.",
+      "reason": "The diff shows changes applied to elements other than the <span> (e.g., the wrapping <a>), which violates the constraint to update ONLY the selected <span>. Also, the <span> only has `text-center` with no evidence of being made full-width/block to ensure centering within its available width.",
+      "evidence": [
+        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "requirement": "Ensure the change targets the specific element selected by the provided XPath.",
+      "reason": "The shown component structure is `Button -> <a> -> <span>`, not `button -> div -> span` as in the XPath (`button[1]/div[1]/span[1]`), so it is not evident that the modified <span> corresponds to the XPath-selected element.",
+      "evidence": [
+        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added/changed styling on the wrapping anchor element (`className=\"justify-center\"`), affecting layout beyond the selected <span>.",
+      "reason": "REQ-31 explicitly restricts changes to ONLY the selected <span>; modifying the parent/wrapper element is out of scope.",
+      "evidence": [
+        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+      ]
+    },
+    {
+      "description": "Added/changed link behavior (`href=\"#\"` and `onClick={(e) => e.preventDefault()}`) on the CTA anchor.",
+      "reason": "Behavior/navigation changes were a stated non-goal; this introduces/changes click behavior beyond centering the span text.",
+      "evidence": [
+        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+      ]
+    },
+    {
+      "description": "Updated meta/state summary files (`frontend-file-summaries.txt`, `project_state.json`).",
+      "reason": "Not requested by REQ-31; these changes are unrelated to centering the selected span label text.",
+      "evidence": [
+        "frontend-file-summaries.txt",
+        "project_state.json"
+      ]
+    }
+  ],
+  "confidence": 0.72,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/pages/DestinationDetailPage.tsx",
+    "frontend/src/components/AffiliateCtaPlaceholder.tsx",
     "project_state.json"
   ]
 }

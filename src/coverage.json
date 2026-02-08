@@ -1,35 +1,24 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T09:05:47.960Z",
+  "generatedAt": "2026-02-08T11:07:23.604Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-29",
-        "summary": "Update the Destination Detail page UI to include a dedicated lodging section that explicitly covers “Hotels” and “Airbnb” options (in addition to any existing homestay/guesthouse content), with clear headings and concise guidance in English.",
+        "id": "REQ-31",
+        "summary": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within the app layout (center-aligned within its available width). Apply styling changes only to this `<span>` (e.g., make it full-width and center its text) without moving, resizing, or restyling other elements.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/DestinationDetailPage.tsx"
+          "frontend/src/components/AffiliateCtaPlaceholder.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/DestinationDetailPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-30",
-        "summary": "Add a new “Local Transport” section to the Destination Detail page that covers common options such as renting a bike and hiring a cab/taxi, using the existing component patterns (Cards, icons, and AffiliateCtaPlaceholder-style CTA placeholders where appropriate).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/DestinationDetailPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/DestinationDetailPage.tsx"
+          "frontend/src/components/AffiliateCtaPlaceholder.tsx"
         ]
       }
     ]
@@ -39,7 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/pages/DestinationDetailPage.tsx",
+    "frontend/src/components/AffiliateCtaPlaceholder.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

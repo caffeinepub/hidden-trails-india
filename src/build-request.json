@@ -1,55 +1,34 @@
 {
   "kind": "build_request",
-  "title": "Add Hotels/Airbnb and Local Transport sections to Destination Detail pages",
+  "title": "Center the selected button label text",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-29",
-      "text": "Update the Destination Detail page UI to include a dedicated lodging section that explicitly covers “Hotels” and “Airbnb” options (in addition to any existing homestay/guesthouse content), with clear headings and concise guidance in English.",
+      "id": "REQ-31",
+      "text": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within the app layout (center-aligned within its available width). Apply styling changes only to this `<span>` (e.g., make it full-width and center its text) without moving, resizing, or restyling other elements.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages-4"
+          "msg-7"
         ],
         "quotes": [
-          "ADD Hotel or AIRBNB section , Local transport section like rent a bike , Cab"
+          "bring it to center of the app"
         ]
       },
       "acceptanceCriteria": [
-        "On the destination detail route (/destinations/$slug), the content includes clearly labeled lodging subsections that explicitly mention “Hotels” and “Airbnb”.",
-        "All user-facing text added for these sections is in English.",
-        "The new lodging content matches the existing visual system (Card/card-glow, typography scale, spacing) used elsewhere on the page."
-      ]
-    },
-    {
-      "id": "REQ-30",
-      "text": "Add a new “Local Transport” section to the Destination Detail page that covers common options such as renting a bike and hiring a cab/taxi, using the existing component patterns (Cards, icons, and AffiliateCtaPlaceholder-style CTA placeholders where appropriate).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "recent-messages-4"
-        ],
-        "quotes": [
-          "Local transport section like rent a bike , Cab"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A new section titled “Local Transport” appears on the destination detail page as part of the main content flow.",
-        "The section includes at minimum: (1) Rent a Bike and (2) Cab/Taxi options, each described with short, scannable text.",
-        "Any CTAs in this section are placeholders (non-navigating), consistent with the existing AffiliateCtaPlaceholder behavior.",
-        "The section is visually consistent with existing sections and uses the existing motion/reveal pattern (MotionReveal) like other sections on the page."
+        "The text inside the selected `<span>` renders centered (not left-aligned) in its current UI context.",
+        "The change is applied only to the selected `<span>` element; no other layout/spacing changes occur elsewhere on the page.",
+        "No user-facing text content changes."
       ]
     }
   ],
   "constraints": [
-    "Do not introduce any email capture, email submission prompts, or newsletter/lead-magnet UI while adding these sections.",
-    "Do not add real third-party booking integrations or outbound tracking; keep CTAs as placeholders consistent with current app behavior.",
-    "Do not modify files under frontend/src/components/ui (read-only components must be composed, not edited)."
+    "Apply the user instruction ONLY to the element selected by the provided XPath.",
+    "Do not edit any files under frontend/src/components/ui or other immutablePaths listed in SYSTEM_CONTEXT."
   ],
   "nonGoals": [
-    "Building a full hotel/Airbnb inventory system or storing lodging/transport listings in the backend.",
-    "Implementing real affiliate deep links, payments, or checkout flows.",
-    "Adding real-time features (chat/support) for bookings or transport coordination."
+    "Do not redesign the surrounding section, button, or page layout beyond centering the selected span’s content.",
+    "Do not add new features or change routing/navigation."
   ],
   "imageRequirements": {
     "required": [],
