@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-only-the-selected-element-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-div-1-section-1-div-5-button-1-div-1-span-1-so-that-it-is-visually-centered-within-the-app-layout-center-aligned-within-its-available-width-apply-styling-changes-only-to-this-span-e-g-make-it-full-width-and-center-its-text-without-moving-resizing-or-restyling-other-elements",
-      "featureTitle": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within the app layout (center-aligned within its available width). Apply styling changes only to this `<span>` (e.g., make it full-width and center its text) without moving, resizing, or restyling other elements.",
+      "featureId": "feature-create-a-single-canonical-frontend-destinations-dataset-containing-all-50-offbeat-hidden-gem-places-in-india-with-complete-details-for-each-place-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-a-travel-plan-idea",
+      "featureTitle": "Create a single canonical frontend destinations dataset containing all 50 offbeat/hidden-gem places in India, with complete details for each place: Location, Why it’s special (significance), How to reach, Activities, Best time, and a Travel plan idea.",
       "files": [
-        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+        "frontend/src/data/destinationTypes.ts",
+        "frontend/src/data/destinations.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,7 +16,82 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-31"
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-destinations-listing-page-to-render-all-50-destinations-from-the-canonical-dataset-and-ensure-search-filter-continues-to-work-across-the-full-dataset",
+      "featureTitle": "Update the Destinations listing page to render all 50 destinations from the canonical dataset and ensure search/filter continues to work across the full dataset.",
+      "files": [
+        "frontend/src/pages/DestinationsPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-destination-detail-page-to-load-the-destination-based-on-the-route-slug-and-render-the-destination-s-complete-details-sections-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-travel-plan-idea",
+      "featureTitle": "Update the Destination Detail page to load the destination based on the route slug and render the destination’s complete details sections: Location, Why it’s special (significance), How to reach, Activities, Best time, and Travel plan idea.",
+      "files": [
+        "frontend/src/components/SafeImage.tsx",
+        "frontend/src/pages/DestinationDetailPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-for-destinations-where-the-user-supplied-image-urls-in-the-provided-list-store-and-display-at-least-one-of-those-urls-per-corresponding-destination-entry-for-destinations-without-supplied-image-urls-use-the-existing-local-fallback-images",
+      "featureTitle": "For destinations where the user supplied image URLs in the provided list, store and display at least one of those URLs per corresponding destination entry; for destinations without supplied image URLs, use the existing local fallback images.",
+      "files": [
+        "frontend/src/components/DestinationCard.tsx",
+        "frontend/src/data/destinations.ts",
+        "frontend/src/pages/DestinationDetailPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-home-page-featured-destinations-section-to-source-its-items-from-the-canonical-destinations-dataset-and-ensure-featured-items-exist-within-the-50-place-list",
+      "featureTitle": "Update the Home page featured destinations section to source its items from the canonical destinations dataset (and ensure featured items exist within the 50-place list).",
+      "files": [
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
       ],
       "confidence": "high"
     }

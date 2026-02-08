@@ -39,13 +39,19 @@ export default function SiteFooter() {
             <h3 className="font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <span className="text-muted-foreground">Travel Tips</span>
+                <Link to="/travel-tips" className="text-muted-foreground hover:text-primary transition-colors">
+                  Travel Tips
+                </Link>
               </li>
               <li>
-                <span className="text-muted-foreground">Budget Planning</span>
+                <Link to="/budget-planning" className="text-muted-foreground hover:text-primary transition-colors">
+                  Budget Planning
+                </Link>
               </li>
               <li>
-                <span className="text-muted-foreground">Safety Guide</span>
+                <Link to="/safety-guide" className="text-muted-foreground hover:text-primary transition-colors">
+                  Safety Guide
+                </Link>
               </li>
             </ul>
           </div>

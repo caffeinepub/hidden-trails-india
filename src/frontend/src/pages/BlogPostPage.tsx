@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import SafeImage from '@/components/SafeImage';
 
 export default function BlogPostPage() {
   const { slug } = useParams({ from: '/blog/$slug' });
@@ -14,7 +15,7 @@ export default function BlogPostPage() {
     category: 'Destination Guides',
     date: 'Feb 5, 2026',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
+    image: '/assets/generated/image-fallback-landscape.dim_1600x900.png',
     content: `
       <p>North India is home to some of the most spectacular landscapes in the country, but most travelers stick to the same crowded destinations. If you're looking to escape the tourist hordes and discover authentic experiences, these hidden gems are perfect for your 2026 travel plans.</p>
 
@@ -85,7 +86,7 @@ export default function BlogPostPage() {
 
         {/* Featured Image */}
         <div className="aspect-[21/9] rounded-lg overflow-hidden mb-8">
-          <img
+          <SafeImage
             src={post.image}
             alt={post.title}
             className="w-full h-full object-cover"
@@ -107,8 +108,8 @@ export default function BlogPostPage() {
             <Link to="/blog/$slug" params={{ slug: 'budget-trips-under-10k' }} className="group">
               <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="aspect-video overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
+                  <SafeImage
+                    src="/assets/generated/image-fallback-landscape.dim_1600x900.png"
                     alt="Budget trips"
                     className="w-full h-full object-cover transition-transform group-hover:scale-105"
                   />
@@ -127,8 +128,8 @@ export default function BlogPostPage() {
             <Link to="/blog/$slug" params={{ slug: 'secret-trekking-spots' }} className="group">
               <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="aspect-video overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80"
+                  <SafeImage
+                    src="/assets/generated/image-fallback-landscape.dim_1600x900.png"
                     alt="Trekking"
                     className="w-full h-full object-cover transition-transform group-hover:scale-105"
                   />

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Link } from '@tanstack/react-router';
-import { ArrowRight, MapPin, Wallet, Calendar, TrendingUp } from 'lucide-react';
+import { ArrowRight, MapPin, Wallet, Calendar, TrendingUp, BookOpen, Lightbulb, Calculator, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CinematicHero from '@/components/CinematicHero';
@@ -9,64 +9,11 @@ import InteractiveIndiaMap from '@/components/InteractiveIndiaMap';
 import SocialProofGallery from '@/components/SocialProofGallery';
 import MotionReveal from '@/components/MotionReveal';
 import { useParallax } from '@/hooks/useParallax';
-import { TagType } from '@/components/TagChip';
+import destinations from '@/data/destinations';
 
-const featuredDestinations = [
-  {
-    slug: 'pulga',
-    name: 'Pulga',
-    region: 'Himachal Pradesh',
-    budget: '₹8K-12K',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
-    description: 'Hidden Himalayan village with fairy forest trails',
-    tags: ['Trek', 'Nature', 'Camping'] as TagType[],
-  },
-  {
-    slug: 'gurez',
-    name: 'Gurez Valley',
-    region: 'Kashmir',
-    budget: '₹15K-20K',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-    description: 'Untouched valley near the LoC with pristine beauty',
-    tags: ['Valley', 'Trek'] as TagType[],
-  },
-  {
-    slug: 'tirthan',
-    name: 'Tirthan Valley',
-    region: 'Himachal Pradesh',
-    budget: '₹10K-15K',
-    image: 'https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=800&q=80',
-    description: 'Crystal clear river and offbeat trekking routes',
-    tags: ['Nature', 'Trek', 'Camping'] as TagType[],
-  },
-  {
-    slug: 'majuli',
-    name: 'Majuli',
-    region: 'Assam',
-    budget: '₹12K-18K',
-    image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
-    description: "World's largest river island with unique culture",
-    tags: ['Nature', 'Beach'] as TagType[],
-  },
-  {
-    slug: 'dzukou',
-    name: 'Dzukou Valley',
-    region: 'Nagaland',
-    budget: '₹10K-14K',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
-    description: 'Valley of flowers in Northeast India',
-    tags: ['Valley', 'Trek', 'Nature'] as TagType[],
-  },
-  {
-    slug: 'gandikota',
-    name: 'Gandikota',
-    region: 'Andhra Pradesh',
-    budget: '₹6K-10K',
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
-    description: "India's Grand Canyon with stunning gorge views",
-    tags: ['Valley', 'Camping'] as TagType[],
-  },
-];
+// Select featured destinations from the canonical dataset
+const featuredSlugs = ['gurez-valley', 'tirthan-valley', 'majuli', 'dzukou-valley', 'gandikota', 'kudremukh'];
+const featuredDestinations = destinations.filter(d => featuredSlugs.includes(d.slug));
 
 const budgetCategories = [
   {
@@ -86,6 +33,37 @@ const budgetCategories = [
     description: 'Luxury offbeat experiences',
     icon: TrendingUp,
     count: '10+ destinations',
+  },
+];
+
+const resourceCards = [
+  {
+    title: 'Resources',
+    description: 'Essential guides and tools for your journey',
+    icon: BookOpen,
+    path: '/resources',
+    gradient: 'from-primary/20 to-accent/20',
+  },
+  {
+    title: 'Travel Tips',
+    description: 'Expert advice for offbeat adventures',
+    icon: Lightbulb,
+    path: '/travel-tips',
+    gradient: 'from-accent/20 to-secondary/20',
+  },
+  {
+    title: 'Budget Planning',
+    description: 'Plan your trip finances effectively',
+    icon: Calculator,
+    path: '/budget-planning',
+    gradient: 'from-secondary/20 to-primary/20',
+  },
+  {
+    title: 'Safety Guide',
+    description: 'Stay safe while exploring hidden trails',
+    icon: Shield,
+    path: '/safety-guide',
+    gradient: 'from-primary/20 to-secondary/20',
   },
 ];
 
@@ -191,10 +169,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Interactive India Map */}
+      {/* Resources Section */}
       <section className="py-24 md:py-32 relative overflow-hidden">
         <div className="absolute inset-0 gradient-desert opacity-20" />
         <div className="container relative z-10">
+          <MotionReveal>
+            <div className="text-center mb-16">
+              <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
+                Resources
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Everything you need to plan your perfect offbeat adventure
+              </p>
+            </div>
+          </MotionReveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {resourceCards.map((resource, index) => {
+              const Icon = resource.icon;
+              return (
+                <MotionReveal key={resource.title} delay={index * 100}>
+                  <Link
+                    to={resource.path}
+                    className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-2xl"
+                  >
+                    <Card className="h-full card-glow hover:card-glow-hover transition-all cursor-pointer border-2 hover:border-primary/50">
+                      <CardHeader className="pb-4">
+                        <div className={`mx-auto mb-6 h-20 w-20 rounded-2xl bg-gradient-to-br ${resource.gradient} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                          <Icon className="h-10 w-10 text-primary" />
+                        </div>
+                        <CardTitle className="text-2xl text-center mb-3">{resource.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground text-center leading-relaxed">
+                          {resource.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </MotionReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive India Map */}
+      <section className="py-24 md:py-32 bg-muted/30">
+        <div className="container">
           <MotionReveal>
             <div className="text-center mb-16">
               <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
@@ -234,7 +256,7 @@ export default function HomePage() {
       </section>
 
       {/* Social Proof Gallery */}
-      <section className="py-24 md:py-32 bg-muted/30">
+      <section className="py-24 md:py-32">
         <div className="container">
           <MotionReveal>
             <div className="text-center mb-16">
@@ -254,7 +276,7 @@ export default function HomePage() {
       </section>
 
       {/* Explore by Budget */}
-      <section className="py-24 md:py-32">
+      <section className="py-24 md:py-32 bg-muted/30">
         <div className="container">
           <MotionReveal>
             <div className="text-center mb-16">
@@ -316,10 +338,10 @@ export default function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="text-lg px-8 py-6 h-auto bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
+                className="text-lg px-8 py-6 h-auto bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
               >
                 <Link to="/blog">
-                  Read Travel Tips
+                  Read Travel Guides
                 </Link>
               </Button>
             </div>

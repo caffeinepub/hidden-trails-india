@@ -1,54 +1,75 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T11:07:23.601Z",
-  "summary": "REQ-31 is not fully satisfied based on the diff summary: the change is not clearly limited to the specific XPath-selected <span>, and additional styling/behavior appears to be applied to surrounding elements. The <span> is given `text-center`, but there is no evidence it is made full-width/block to ensure centering within available width.",
+  "generatedAt": "2026-02-08T12:19:28.627Z",
+  "summary": "Diff adds a new canonical destinations dataset/types and rewires Destinations, Destination Detail, and Home featured section to consume it, plus updates cards/images. However, there are likely gaps/risks: the dataset completeness (exactly 50) and specific image-URL coverage can’t be verified from the truncation, and there appears to be an import/export mismatch for the destinations module.",
   "missing_requirements": [
     {
-      "id": "REQ-31",
-      "requirement": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within its available width, applying styling changes only to this `<span>`.",
-      "reason": "The diff shows changes applied to elements other than the <span> (e.g., the wrapping <a>), which violates the constraint to update ONLY the selected <span>. Also, the <span> only has `text-center` with no evidence of being made full-width/block to ensure centering within its available width.",
+      "id": "REQ-1",
+      "requirement": "Canonical dataset contains exactly 50 destinations matching the user-provided list (1–50), with full required fields per destination, and reused everywhere without duplicated arrays.",
+      "reason": "The added dataset file is truncated; the diff evidence only shows the first few entries and does not prove there are exactly 50 items nor that all 50 have the required fields and match the provided list.",
       "evidence": [
-        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+        "frontend/src/data/destinations.ts (truncated)"
       ]
     },
     {
-      "id": "REQ-31",
-      "requirement": "Ensure the change targets the specific element selected by the provided XPath.",
-      "reason": "The shown component structure is `Button -> <a> -> <span>`, not `button -> div -> span` as in the XPath (`button[1]/div[1]/span[1]`), so it is not evident that the modified <span> corresponds to the XPath-selected element.",
+      "id": "REQ-4",
+      "requirement": "For destinations with user-supplied image URLs (e.g., Gurez Valley, Tirthan Valley, Kalpa, Chitkul, Barot Valley, Chopta, Munsiyari, Dzukou Valley, Ziro Valley, Majuli), store and display at least one provided URL per corresponding destination.",
+      "reason": "Some of the example destinations show external image URLs (e.g., Gurez, Tirthan, Kalpa, Chitkul) but the dataset is truncated, so coverage for the rest of the specified destinations (Barot, Chopta, Munsiyari, Dzukou, Ziro, Majuli) cannot be confirmed from the diff summary.",
       "evidence": [
-        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+        "frontend/src/data/destinations.ts (truncated)"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added/changed styling on the wrapping anchor element (`className=\"justify-center\"`), affecting layout beyond the selected <span>.",
-      "reason": "REQ-31 explicitly restricts changes to ONLY the selected <span>; modifying the parent/wrapper element is out of scope.",
+      "description": "Large-scale design system/theme and Tailwind config updates (OKLCH color tokens, new shadows/keyframes, etc.).",
+      "reason": "The BuildRequest is about destination dataset + listing/detail/home wiring; it does not request broad styling/theme refactors.",
       "evidence": [
-        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
       ]
     },
     {
-      "description": "Added/changed link behavior (`href=\"#\"` and `onClick={(e) => e.preventDefault()}`) on the CTA anchor.",
-      "reason": "Behavior/navigation changes were a stated non-goal; this introduces/changes click behavior beyond centering the span text.",
+      "description": "New/updated Cinematic Hero, parallax enhancements, and additional home-page sections beyond sourcing featured destinations from the dataset.",
+      "reason": "REQ-5 only asks to source featured destinations from the canonical dataset; the diff summary indicates substantial new/changed homepage/hero behavior unrelated to the dataset requirement.",
       "evidence": [
-        "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+        "frontend/src/pages/HomePage.tsx (truncated)",
+        "frontend/src/hooks/useParallax.ts",
+        "frontend/src/components/CinematicHero.tsx",
+        "frontend/src/components/HeroLineSketchOverlay.tsx (mentioned in summaries)"
       ]
     },
     {
-      "description": "Updated meta/state summary files (`frontend-file-summaries.txt`, `project_state.json`).",
-      "reason": "Not requested by REQ-31; these changes are unrelated to centering the selected span label text.",
+      "description": "Added RippleButton component and empty React Query hook placeholder.",
+      "reason": "Not requested; no requirement mentions click ripple effects or introducing React Query placeholders.",
       "evidence": [
-        "frontend-file-summaries.txt",
-        "project_state.json"
+        "frontend/src/components/RippleButton.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "description": "Footer attribution/linking changes (including attribution text).",
+      "reason": "Not part of any requirement; may be unrelated content/branding change.",
+      "evidence": [
+        "frontend/src/components/SiteFooter.tsx (described in frontend-file-summaries.txt)"
       ]
     }
   ],
-  "confidence": 0.72,
+  "confidence": 0.64,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/AffiliateCtaPlaceholder.tsx",
+    "frontend/src/components/DestinationCard.tsx",
+    "frontend/src/components/SafeImage.tsx",
+    "frontend/src/components/SocialProofGallery.tsx",
+    "frontend/src/components/TagChip.tsx",
+    "frontend/src/data/destinationTypes.ts",
+    "frontend/src/data/destinations.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/DestinationDetailPage.tsx",
+    "frontend/src/pages/DestinationsPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/tailwind.config.js",
     "project_state.json"
   ]
 }

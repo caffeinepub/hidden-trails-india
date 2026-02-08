@@ -1,21 +1,107 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Center selected button label <span> text",
+  "title": "Hidden Gems India: canonical 50-destination dataset wired into listing, detail, and home featured sections",
   "requirements": [
     {
-      "id": "REQ-31",
-      "summary": "Center-align the text inside the specific button label <span> identified by the provided XPath by styling only that <span>.",
+      "id": "REQ-1",
+      "summary": "Create a single canonical destinations dataset (50 places) with complete structured details and reusable import across pages.",
       "acceptanceCriteria": [
-        "The text inside the selected `<span>` renders centered (not left-aligned) in its current UI context.",
-        "The change is applied only to the selected `<span>` element; no other layout/spacing changes occur elsewhere on the page.",
-        "No user-facing text content changes."
+        "The dataset contains exactly 50 destinations matching the user-provided list (1–50) and names/regions align with the user’s list.",
+        "Each destination entry includes: slug, name, state/region, location text, significance text, how-to-reach text (can be structured), activities list, best-time text, and travel-plan-idea text.",
+        "All user-facing strings for these details are in English.",
+        "The dataset is imported and reused wherever destination data is needed (no duplicated hardcoded destination arrays across pages)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/AffiliateCtaPlaceholder.tsx",
+          "path": "frontend/src/data/destinations.ts",
+          "operation": "create",
+          "description": "Create the canonical destinations dataset export containing exactly 50 destination objects with the required fields (slug, name, state/region, location, significance, howToReach, activities, bestTime, travelPlanIdea) and any UI helper fields (e.g., budget label/category, card blurb) needed by existing pages. Ensure all strings are English."
+        },
+        {
+          "path": "frontend/src/data/destinationTypes.ts",
+          "operation": "create",
+          "description": "Add shared TypeScript types/interfaces for destination data (including how-to-reach shape and optional image URL fields) so DestinationsPage, DestinationDetailPage, and HomePage consume the same canonical structure."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Render all 50 destinations on /destinations from the canonical dataset and keep search/budget filtering working for the full list.",
+      "acceptanceCriteria": [
+        "/destinations shows 50 destinations by default (before search/filter).",
+        "Search matches against destination name, state/region, and short description/significance text.",
+        "Existing budget tabs continue to function; destinations that do not have explicit budget ranges in the content should still display a sensible budget label rather than breaking the UI (e.g., a default range or 'Varies').",
+        "Destination cards link correctly to /destinations/$slug for every destination in the dataset."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DestinationsPage.tsx",
           "operation": "modify",
-          "description": "Locate the <span> that corresponds to XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` and apply styling ONLY to that <span> to center its text within available width (e.g., make it full-width and add center text alignment via utility classes or existing className composition), without altering any surrounding elements."
+          "description": "Replace the local hardcoded allDestinations array with an import from the canonical dataset. Update filtering to search across name, region, and significance (or a derived short description). Ensure budget tab filtering remains functional for all 50 entries, including a safe default budget label/category when missing so the UI never breaks."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Load destination details by route slug and render all required detail sections with a friendly not-found state.",
+      "acceptanceCriteria": [
+        "Navigating to /destinations/$slug renders the matching destination content from the canonical dataset (no hardcoded 'Pulga' detail).",
+        "The page visibly includes all required detail sections for each destination: Location, Significance, How to reach, Activities, Best time, and Travel plan idea.",
+        "If an unknown slug is visited, the UI shows a user-friendly 'not found' state with a link back to /destinations (no blank page or runtime error)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DestinationDetailPage.tsx",
+          "operation": "modify",
+          "description": "Refactor the page to look up the destination by the route slug from the canonical dataset and render the required sections: Location, Why it’s special (significance), How to reach, Activities, Best time, Travel plan idea. Add a user-friendly not-found state (with link back to /destinations) when no destination matches the slug."
+        },
+        {
+          "path": "frontend/src/components/SafeImage.tsx",
+          "operation": "modify",
+          "description": "Ensure SafeImage usage supports destination detail hero and cards with reliable fallback behavior for external URLs (no broken-image icons). Keep existing fallback behavior intact and confirm it works for both local and remote sources."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Store and display provided external image URLs per destination when available; otherwise use existing local fallback images via SafeImage.",
+      "acceptanceCriteria": [
+        "Destinations with provided image URLs (e.g., Gurez Valley, Tirthan Valley, Kalpa, Chitkul, Barot Valley, Chopta, Munsiyari, Dzukou Valley, Ziro Valley, Majuli) render using those URLs at least on the destination cards and/or destination detail hero.",
+        "All destination imagery uses the existing SafeImage fallback behavior so a failed external image load degrades to the local fallback assets without broken-image icons.",
+        "No backend is introduced for image proxying; images are referenced directly by URL or via existing local assets under frontend/public."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/destinations.ts",
+          "operation": "modify",
+          "description": "Add/normalize image fields per destination entry: for places where the user provided image URLs, store at least one URL per destination; for others, set the image to the existing local fallback asset path (frontend/public assets already used by SafeImage)."
+        },
+        {
+          "path": "frontend/src/components/DestinationCard.tsx",
+          "operation": "modify",
+          "description": "Confirm cards render destination images using the dataset-provided image (external URL or local path) through the existing SafeImage component so failures fall back to local generated assets."
+        },
+        {
+          "path": "frontend/src/pages/DestinationDetailPage.tsx",
+          "operation": "modify",
+          "description": "Update the hero image rendering to use SafeImage with the dataset-provided image URL/path so external URLs degrade gracefully to existing local fallback images without adding any backend proxy."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Update Home page featured destinations to source from the canonical dataset and ensure featured items exist within the 50-place list.",
+      "acceptanceCriteria": [
+        "Home page featured destinations are selected from the same canonical dataset used on /destinations.",
+        "Featured destination links resolve to valid /destinations/$slug routes for those featured items.",
+        "No separate hardcoded destination arrays remain on HomePage for featured destinations."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Remove the hardcoded featuredDestinations array and source featured items from the canonical dataset (e.g., by selecting a fixed list of slugs that are guaranteed to exist in the 50-destination dataset). Ensure DestinationCard props are fed from the canonical entries and links resolve to valid /destinations/$slug routes."
         }
       ]
     }

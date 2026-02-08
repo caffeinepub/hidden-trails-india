@@ -12,6 +12,10 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import BudgetPage from './pages/BudgetPage';
 import CommunityPage from './pages/CommunityPage';
+import ResourcesPage from './pages/ResourcesPage';
+import TravelTipsPage from './pages/TravelTipsPage';
+import BudgetPlanningPage from './pages/BudgetPlanningPage';
+import SafetyGuidePage from './pages/SafetyGuidePage';
 
 function RootLayout() {
   return (
@@ -75,6 +79,30 @@ const communityRoute = createRoute({
   component: CommunityPage,
 });
 
+const resourcesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/resources',
+  component: ResourcesPage,
+});
+
+const travelTipsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/travel-tips',
+  component: TravelTipsPage,
+});
+
+const budgetPlanningRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/budget-planning',
+  component: BudgetPlanningPage,
+});
+
+const safetyGuideRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/safety-guide',
+  component: SafetyGuidePage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   destinationsRoute,
@@ -83,6 +111,10 @@ const routeTree = rootRoute.addChildren([
   blogPostRoute,
   budgetRoute,
   communityRoute,
+  resourcesRoute,
+  travelTipsRoute,
+  budgetPlanningRoute,
+  safetyGuideRoute,
 ]);
 
 const router = createRouter({ routeTree });

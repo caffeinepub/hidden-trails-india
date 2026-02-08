@@ -171,17 +171,18 @@ export default function CinematicHero() {
           )}
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Absolutely positioned at bottom */}
         <button
           onClick={handleScrollToNext}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 scroll-indicator-hero cursor-pointer group motion-reduce:animate-none"
+          className="absolute left-1/2 -translate-x-1/2 cursor-pointer group"
+          style={{ bottom: '40px' }}
           aria-label="Scroll to next section"
         >
           <div className="flex flex-col items-center gap-2">
-            <span className="text-sm font-medium text-foreground/70 group-hover:text-foreground transition-colors">
+            <span className="text-sm font-medium text-foreground drop-shadow-lg group-hover:text-primary transition-colors">
               Scroll to explore
             </span>
-            <ChevronDown className="h-8 w-8 text-primary" />
+            <ChevronDown className="h-8 w-8 text-primary drop-shadow-lg hero-arrow-bounce" />
           </div>
         </button>
       </div>

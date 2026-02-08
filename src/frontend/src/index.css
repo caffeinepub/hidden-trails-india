@@ -1,487 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --radius: 1rem;
-        
-        /* Vibrant youth-focused palette - light mode */
-        --background: 0.98 0.01 85;
-        --foreground: 0.15 0.02 85;
-        
-        --card: 1 0 0;
-        --card-foreground: 0.15 0.02 85;
-        
-        --popover: 1 0 0;
-        --popover-foreground: 0.15 0.02 85;
-        
-        /* Emerald green primary */
-        --primary: 0.65 0.18 165;
-        --primary-foreground: 0.98 0.01 85;
-        
-        /* Sunset orange secondary */
-        --secondary: 0.68 0.20 35;
-        --secondary-foreground: 0.98 0.01 85;
-        
-        --muted: 0.94 0.02 85;
-        --muted-foreground: 0.52 0.02 85;
-        
-        /* Electric blue accent */
-        --accent: 0.62 0.22 240;
-        --accent-foreground: 0.98 0.01 85;
-        
-        /* Warm sand */
-        --sand: 0.92 0.04 60;
-        --sand-foreground: 0.25 0.02 85;
-        
-        --destructive: 0.55 0.22 25;
-        --destructive-foreground: 0.98 0.01 85;
-        
-        --border: 0.88 0.02 85;
-        --input: 0.88 0.02 85;
-        --ring: 0.65 0.18 165;
-        
-        --chart-1: 0.65 0.18 165;
-        --chart-2: 0.62 0.22 240;
-        --chart-3: 0.68 0.20 35;
-        --chart-4: 0.92 0.04 60;
-        --chart-5: 0.55 0.15 280;
-    }
+  :root {
+    /* OKLCH color system - Light mode */
+    --background: 98% 0.01 240;
+    --foreground: 15% 0.02 240;
+    --card: 100% 0 0;
+    --card-foreground: 15% 0.02 240;
+    --popover: 100% 0 0;
+    --popover-foreground: 15% 0.02 240;
+    --primary: 55% 0.18 220;
+    --primary-foreground: 98% 0.01 220;
+    --secondary: 70% 0.12 180;
+    --secondary-foreground: 15% 0.02 180;
+    --accent: 65% 0.15 40;
+    --accent-foreground: 15% 0.02 40;
+    --muted: 92% 0.01 240;
+    --muted-foreground: 45% 0.02 240;
+    --destructive: 55% 0.22 25;
+    --destructive-foreground: 98% 0.01 25;
+    --border: 88% 0.02 240;
+    --input: 88% 0.02 240;
+    --ring: 55% 0.18 220;
+    --radius: 0.75rem;
+    --success: 60% 0.15 145;
+    --warning: 70% 0.18 60;
+  }
 
-    .dark {
-        /* Deep charcoal with vibrant accents - dark mode */
-        --background: 0.09 0.01 85;
-        --foreground: 0.96 0.01 85;
-        
-        --card: 0.14 0.01 85;
-        --card-foreground: 0.96 0.01 85;
-        
-        --popover: 0.14 0.01 85;
-        --popover-foreground: 0.96 0.01 85;
-        
-        /* Bright emerald for dark mode */
-        --primary: 0.72 0.20 165;
-        --primary-foreground: 0.09 0.01 85;
-        
-        /* Vibrant sunset orange */
-        --secondary: 0.72 0.22 35;
-        --secondary-foreground: 0.09 0.01 85;
-        
-        --muted: 0.20 0.01 85;
-        --muted-foreground: 0.68 0.02 85;
-        
-        /* Electric blue bright */
-        --accent: 0.68 0.24 240;
-        --accent-foreground: 0.09 0.01 85;
-        
-        /* Warm sand for dark */
-        --sand: 0.88 0.06 60;
-        --sand-foreground: 0.09 0.01 85;
-        
-        --destructive: 0.62 0.24 25;
-        --destructive-foreground: 0.96 0.01 85;
-        
-        --border: 0.24 0.01 85;
-        --input: 0.24 0.01 85;
-        --ring: 0.72 0.20 165;
-        
-        --chart-1: 0.72 0.20 165;
-        --chart-2: 0.68 0.24 240;
-        --chart-3: 0.72 0.22 35;
-        --chart-4: 0.88 0.06 60;
-        --chart-5: 0.68 0.18 280;
-    }
+  .dark {
+    /* OKLCH color system - Dark mode */
+    --background: 15% 0.02 240;
+    --foreground: 95% 0.01 240;
+    --card: 18% 0.02 240;
+    --card-foreground: 95% 0.01 240;
+    --popover: 18% 0.02 240;
+    --popover-foreground: 95% 0.01 240;
+    --primary: 65% 0.18 220;
+    --primary-foreground: 15% 0.02 220;
+    --secondary: 75% 0.12 180;
+    --secondary-foreground: 15% 0.02 180;
+    --accent: 70% 0.15 40;
+    --accent-foreground: 15% 0.02 40;
+    --muted: 25% 0.02 240;
+    --muted-foreground: 65% 0.02 240;
+    --destructive: 60% 0.22 25;
+    --destructive-foreground: 95% 0.01 25;
+    --border: 28% 0.02 240;
+    --input: 28% 0.02 240;
+    --ring: 65% 0.18 220;
+    --success: 65% 0.15 145;
+    --warning: 75% 0.18 60;
+  }
+}
 
-    * {
-        @apply border-border;
-    }
-    
-    body {
-        @apply bg-background text-foreground;
-        font-feature-settings: "rlig" 1, "calt" 1;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-        @apply font-display font-bold tracking-tight;
-    }
-    
-    h1 {
-        @apply text-5xl md:text-7xl leading-tight;
-    }
-    
-    h2 {
-        @apply text-3xl md:text-5xl;
-    }
-    
-    h3 {
-        @apply text-2xl md:text-3xl;
-    }
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  }
 }
 
 @layer utilities {
-    /* Hero parallax layer GPU acceleration */
-    .hero-parallax-layer {
-        will-change: transform;
-        transform: translateZ(0);
-    }
-    
-    /* Hero-specific atmosphere layers */
-    .hero-fallback-gradient {
-        background: linear-gradient(135deg,
-            oklch(0.65 0.18 165 / 0.4) 0%,
-            oklch(0.62 0.22 240 / 0.3) 35%,
-            oklch(0.68 0.20 35 / 0.25) 70%,
-            oklch(0.92 0.04 60 / 0.2) 100%);
-    }
-    
-    .dark .hero-fallback-gradient {
-        background: linear-gradient(135deg,
-            oklch(0.25 0.12 165 / 0.6) 0%,
-            oklch(0.20 0.15 240 / 0.5) 35%,
-            oklch(0.22 0.14 35 / 0.45) 70%,
-            oklch(0.18 0.08 60 / 0.4) 100%);
-    }
-    
-    .hero-vignette {
-        background: radial-gradient(ellipse at center,
-            transparent 0%,
-            transparent 40%,
-            oklch(0 0 0 / 0.3) 100%);
-    }
-    
-    .dark .hero-vignette {
-        background: radial-gradient(ellipse at center,
-            transparent 0%,
-            transparent 35%,
-            oklch(0 0 0 / 0.6) 100%);
-    }
-    
-    @keyframes hero-glow-drift {
-        0%, 100% {
-            transform: translate(0, 0) scale(1);
-            opacity: 0.4;
-        }
-        33% {
-            transform: translate(3%, -2%) scale(1.05);
-            opacity: 0.5;
-        }
-        66% {
-            transform: translate(-2%, 3%) scale(0.98);
-            opacity: 0.45;
-        }
-    }
-    
-    .hero-gradient-glow {
-        background: radial-gradient(ellipse 80% 60% at 45% 45%,
-            oklch(0.65 0.18 165 / 0.15) 0%,
-            oklch(0.62 0.22 240 / 0.1) 40%,
-            transparent 70%);
-        animation: hero-glow-drift 12s ease-in-out infinite;
-    }
-    
-    .dark .hero-gradient-glow {
-        background: radial-gradient(ellipse 80% 60% at 45% 45%,
-            oklch(0.72 0.20 165 / 0.2) 0%,
-            oklch(0.68 0.24 240 / 0.15) 40%,
-            transparent 70%);
-    }
-    
-    .hero-grain {
-        background-size: 256px 256px;
-        background-repeat: repeat;
-    }
-    
-    @keyframes light-leak-drift {
-        0%, 100% {
-            transform: translate(0, 0) rotate(0deg);
-            opacity: 0.15;
-        }
-        50% {
-            transform: translate(-5%, 5%) rotate(2deg);
-            opacity: 0.25;
-        }
-    }
-    
-    .hero-light-leak {
-        background: radial-gradient(ellipse at center,
-            oklch(0.68 0.20 35 / 0.3) 0%,
-            oklch(0.62 0.22 240 / 0.15) 40%,
-            transparent 70%);
-        filter: blur(80px);
-        animation: light-leak-drift 15s ease-in-out infinite;
-    }
-    
-    .dark .hero-light-leak {
-        background: radial-gradient(ellipse at center,
-            oklch(0.72 0.22 35 / 0.4) 0%,
-            oklch(0.68 0.24 240 / 0.2) 40%,
-            transparent 70%);
-    }
-    
-    /* Hero Line Sketch Animations */
-    @keyframes hero-line-drift {
-        0%, 100% {
-            transform: translate(0, 0);
-        }
-        50% {
-            transform: translate(1%, -0.5%);
-        }
-    }
-    
-    .hero-line-drift {
-        animation: hero-line-drift 20s linear infinite;
-        will-change: transform;
-    }
-    
-    .hero-line-drift-mobile {
-        animation: hero-line-drift 18s linear infinite;
-        will-change: transform;
-    }
-    
-    @keyframes hero-line-dash-1 {
-        0% {
-            stroke-dashoffset: 0;
-        }
-        100% {
-            stroke-dashoffset: 100;
-        }
-    }
-    
-    @keyframes hero-line-dash-2 {
-        0% {
-            stroke-dashoffset: 0;
-        }
-        100% {
-            stroke-dashoffset: -100;
-        }
-    }
-    
-    @keyframes hero-line-dash-3 {
-        0% {
-            stroke-dashoffset: 0;
-        }
-        100% {
-            stroke-dashoffset: 80;
-        }
-    }
-    
-    .hero-line-dash-1 {
-        stroke-dasharray: 20 10;
-        animation: hero-line-dash-1 25s linear infinite;
-    }
-    
-    .hero-line-dash-2 {
-        stroke-dasharray: 15 8;
-        animation: hero-line-dash-2 22s linear infinite;
-    }
-    
-    .hero-line-dash-3 {
-        stroke-dasharray: 18 12;
-        animation: hero-line-dash-3 20s linear infinite;
-    }
-    
-    /* Premium Travel Path Animation */
-    @keyframes hero-travel-path {
-        0% {
-            stroke-dashoffset: 2000;
-            opacity: 0;
-        }
-        5% {
-            opacity: 1;
-        }
-        40% {
-            stroke-dashoffset: 0;
-            opacity: 1;
-        }
-        60% {
-            stroke-dashoffset: 0;
-            opacity: 1;
-        }
-        85% {
-            stroke-dashoffset: 0;
-            opacity: 0;
-        }
-        100% {
-            stroke-dashoffset: 0;
-            opacity: 0;
-        }
-    }
-    
-    .hero-travel-path {
-        animation: hero-travel-path 25s ease-in-out infinite;
-    }
-    
-    /* Premium CTA glow effect */
-    .btn-glow {
-        position: relative;
-        transition: all 0.25s ease;
-    }
-    
-    .btn-glow:hover,
-    .btn-glow:focus-visible {
-        transform: scale(1.02);
-        box-shadow: 
-            0 0 20px oklch(0.65 0.18 165 / 0.3),
-            0 0 40px oklch(0.65 0.18 165 / 0.15),
-            0 4px 12px oklch(0 0 0 / 0.2);
-        filter: brightness(1.08);
-    }
-    
-    .dark .btn-glow:hover,
-    .dark .btn-glow:focus-visible {
-        box-shadow: 
-            0 0 24px oklch(0.72 0.20 165 / 0.4),
-            0 0 48px oklch(0.72 0.20 165 / 0.2),
-            0 4px 12px oklch(0 0 0 / 0.3);
-        filter: brightness(1.12);
-    }
-    
-    .btn-glow:focus-visible {
-        outline: 2px solid oklch(var(--ring));
-        outline-offset: 2px;
-    }
-    
-    /* Disable motion effects for reduced motion preference */
-    @media (prefers-reduced-motion: reduce) {
-        .btn-glow:hover,
-        .btn-glow:focus-visible {
-            transform: none;
-            filter: none;
-        }
-        
-        .hero-parallax-layer {
-            will-change: auto;
-        }
-        
-        /* Disable all line sketch animations */
-        .hero-line-drift,
-        .hero-line-drift-mobile {
-            animation: none;
-        }
-        
-        .hero-line-dash-1,
-        .hero-line-dash-2,
-        .hero-line-dash-3 {
-            animation: none;
-            stroke-dasharray: none;
-        }
-        
-        .hero-travel-path {
-            animation: none;
-            stroke-dashoffset: 0;
-            opacity: 0.6;
-        }
-    }
-    
-    /* Mobile optimization - reduce animation complexity */
-    @media (max-width: 768px) {
-        .hero-line-drift-mobile {
-            animation-duration: 22s;
-        }
-        
-        .hero-line-dash-1,
-        .hero-line-dash-2,
-        .hero-line-dash-3 {
-            animation-duration: 28s;
-        }
-    }
-    
-    /* Scroll indicator animation */
-    @keyframes scroll-bounce {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(8px);
-        }
-    }
-    
-    .scroll-indicator-hero {
-        animation: scroll-bounce 2s ease-in-out infinite;
-    }
-    
-    /* Gradient utilities */
-    .gradient-ocean {
-        background: linear-gradient(135deg,
-            oklch(0.62 0.22 240 / 0.6) 0%,
-            oklch(0.65 0.18 165 / 0.4) 50%,
-            oklch(0.68 0.20 35 / 0.3) 100%);
-    }
-    
-    .gradient-desert {
-        background: linear-gradient(135deg,
-            oklch(0.92 0.04 60 / 0.5) 0%,
-            oklch(0.68 0.20 35 / 0.4) 50%,
-            oklch(0.65 0.18 165 / 0.3) 100%);
-    }
-    
-    .gradient-animated {
-        background-size: 200% 200%;
-        animation: gradient-shift 8s ease infinite;
-    }
-    
-    @keyframes gradient-shift {
-        0%, 100% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-    }
-    
-    /* Glass morphism */
-    .glass-strong {
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        background-color: oklch(var(--background) / 0.3);
-    }
-    
-    .glass-subtle {
-        backdrop-filter: blur(8px) saturate(150%);
-        -webkit-backdrop-filter: blur(8px) saturate(150%);
-        background-color: oklch(var(--background) / 0.5);
-    }
-    
-    /* Card effects */
-    .card-glow {
-        transition: all 0.3s ease;
-    }
-    
-    .card-glow-hover:hover {
-        box-shadow: 0 8px 32px oklch(var(--primary) / 0.15);
-        transform: translateY(-4px);
-    }
-    
-    /* Masonry grid */
+  .font-display {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Parallax GPU acceleration */
+  .parallax {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Premium button glow effect */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px oklch(55% 0.18 220 / 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 30px oklch(55% 0.18 220 / 0.5);
+  }
+
+  /* Card glow effect */
+  .card-glow {
+    box-shadow: 0 4px 20px oklch(55% 0.18 220 / 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card-glow-hover:hover {
+    box-shadow: 0 8px 30px oklch(55% 0.18 220 / 0.15);
+    transform: translateY(-4px);
+  }
+
+  /* Glass effect */
+  .glass {
+    background: oklch(100% 0 0 / 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid oklch(100% 0 0 / 0.2);
+  }
+
+  .dark .glass {
+    background: oklch(15% 0.02 240 / 0.3);
+    border: 1px solid oklch(100% 0 0 / 0.1);
+  }
+
+  /* Gradient backgrounds */
+  .gradient-ocean {
+    background: linear-gradient(135deg, oklch(55% 0.18 220) 0%, oklch(65% 0.15 200) 100%);
+  }
+
+  .gradient-desert {
+    background: linear-gradient(135deg, oklch(65% 0.15 40) 0%, oklch(70% 0.12 60) 100%);
+  }
+
+  .gradient-forest {
+    background: linear-gradient(135deg, oklch(60% 0.15 145) 0%, oklch(70% 0.12 180) 100%);
+  }
+
+  /* Masonry grid */
+  .masonry {
+    column-count: 1;
+    column-gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
     .masonry {
-        column-count: 3;
-        column-gap: 1.5rem;
+      column-count: 2;
     }
-    
-    @media (max-width: 1024px) {
-        .masonry {
-            column-count: 2;
-        }
+  }
+
+  @media (min-width: 1024px) {
+    .masonry {
+      column-count: 3;
     }
-    
-    .masonry-item {
-        break-inside: avoid;
-        margin-bottom: 1.5rem;
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Tag chip styles */
+  .tag-camping {
+    background-color: oklch(65% 0.15 40 / 0.2);
+    color: oklch(15% 0.02 40);
+    border: 1px solid oklch(65% 0.15 40 / 0.3);
+  }
+
+  .dark .tag-camping {
+    color: oklch(70% 0.15 40);
+  }
+
+  .tag-trek {
+    background-color: oklch(55% 0.18 220 / 0.2);
+    color: oklch(98% 0.01 220);
+    border: 1px solid oklch(55% 0.18 220 / 0.3);
+  }
+
+  .dark .tag-trek {
+    color: oklch(65% 0.18 220);
+  }
+
+  .tag-beach {
+    background-color: oklch(70% 0.12 180 / 0.2);
+    color: oklch(15% 0.02 180);
+    border: 1px solid oklch(70% 0.12 180 / 0.3);
+  }
+
+  .dark .tag-beach {
+    color: oklch(75% 0.12 180);
+  }
+
+  .tag-valley {
+    background-color: oklch(60% 0.15 145 / 0.2);
+    color: oklch(60% 0.15 145);
+    border: 1px solid oklch(60% 0.15 145 / 0.3);
+  }
+
+  .dark .tag-valley {
+    color: oklch(65% 0.15 145);
+  }
+
+  .tag-nature {
+    background-color: oklch(60% 0.15 145 / 0.2);
+    color: oklch(60% 0.15 145);
+    border: 1px solid oklch(60% 0.15 145 / 0.3);
+  }
+
+  .dark .tag-nature {
+    color: oklch(65% 0.15 145);
+  }
+
+  .tag-culture {
+    background-color: oklch(70% 0.18 60 / 0.2);
+    color: oklch(70% 0.18 60);
+    border: 1px solid oklch(70% 0.18 60 / 0.3);
+  }
+
+  .dark .tag-culture {
+    color: oklch(75% 0.18 60);
+  }
+
+  .tag-adventure {
+    background-color: oklch(55% 0.22 25 / 0.2);
+    color: oklch(55% 0.22 25);
+    border: 1px solid oklch(55% 0.22 25 / 0.3);
+  }
+
+  .dark .tag-adventure {
+    color: oklch(60% 0.22 25);
+  }
+
+  .tag-wildlife {
+    background-color: oklch(55% 0.18 220 / 0.2);
+    color: oklch(98% 0.01 220);
+    border: 1px solid oklch(55% 0.18 220 / 0.3);
+  }
+
+  .dark .tag-wildlife {
+    color: oklch(65% 0.18 220);
+  }
+
+  .tag-heritage {
+    background-color: oklch(65% 0.15 40 / 0.2);
+    color: oklch(15% 0.02 40);
+    border: 1px solid oklch(65% 0.15 40 / 0.3);
+  }
+
+  .dark .tag-heritage {
+    color: oklch(70% 0.15 40);
+  }
+
+  /* Polaroid frame effect */
+  .polaroid {
+    background-color: oklch(var(--card));
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px oklch(0% 0 0 / 0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .polaroid:hover {
+    transform: scale(1.05);
+  }
+
+  .dark .polaroid {
+    box-shadow: 0 4px 20px oklch(0% 0 0 / 0.4);
+  }
+
+  .rotate-2 {
+    transform: rotate(2deg);
+  }
+
+  .rotate-2:hover {
+    transform: rotate(0deg) scale(1.05);
+  }
+}
+
+/* Line sketch animation keyframes */
+@keyframes line-sketch-draw {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
+}
+
+@keyframes line-sketch-drift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, -10px);
+  }
+}
+
+/* Hero arrow bounce animation - applied only to scroll indicator arrow */
+@keyframes hero-arrow-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .parallax {
+    transform: none !important;
+  }
+
+  @keyframes line-sketch-draw {
+    0%, 100% {
+      stroke-dashoffset: 0;
+      opacity: 0.3;
     }
-    
-    /* Hide scrollbar but keep functionality */
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+  }
+
+  @keyframes line-sketch-drift {
+    0%, 100% {
+      transform: translate(0, 0);
     }
-    
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
+  }
+
+  @keyframes hero-arrow-bounce {
+    0%, 100% {
+      transform: translateY(0);
     }
-    
-    /* Parallax utility for non-hero sections */
-    .parallax {
-        will-change: transform;
-    }
+  }
+
+  .card-glow-hover:hover {
+    transform: none;
+  }
+
+  .polaroid:hover {
+    transform: none;
+  }
+
+  .rotate-2:hover {
+    transform: rotate(2deg);
+  }
 }

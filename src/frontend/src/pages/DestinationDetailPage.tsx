@@ -25,31 +25,40 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import AffiliateCtaPlaceholder from '@/components/AffiliateCtaPlaceholder';
 import TrustBadges from '@/components/TrustBadges';
 import MotionReveal from '@/components/MotionReveal';
+import SafeImage from '@/components/SafeImage';
+import destinations from '@/data/destinations';
 
 export default function DestinationDetailPage() {
   const { slug } = useParams({ from: '/destinations/$slug' });
 
-  const destination = {
-    name: 'Pulga',
-    region: 'Himachal Pradesh',
-    tagline: 'Hidden Himalayan village with fairy forest trails',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
-    snapshot: {
-      duration: '3-4 days',
-      budget: '₹8,000 - ₹12,000',
-      bestSeason: 'March to June, September to November',
-      difficulty: 'Easy to Moderate',
-      internet: 'Limited (BSNL works)',
-    },
-    description:
-      'Pulga is a tiny hamlet in the Parvati Valley, known for its magical fairy forest trails and peaceful atmosphere. Away from the crowds of Kasol, this hidden gem offers authentic mountain village life with stunning views of snow-capped peaks.',
-  };
+  const destination = destinations.find(d => d.slug === slug);
+
+  if (!destination) {
+    return (
+      <div className="py-24 md:py-32">
+        <div className="container text-center">
+          <h1 className="font-display text-4xl md:text-6xl font-bold mb-6">
+            Destination Not Found
+          </h1>
+          <p className="text-lg text-muted-foreground mb-8">
+            The destination you're looking for doesn't exist or has been moved.
+          </p>
+          <Button asChild size="lg">
+            <Link to="/destinations">
+              <ArrowLeft className="mr-2 h-5 w-5" />
+              Back to All Destinations
+            </Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pb-16 mb-16 md:mb-0">
       {/* Hero Image */}
       <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
-        <img
+        <SafeImage
           src={destination.image}
           alt={destination.name}
           className="w-full h-full object-cover"
@@ -68,7 +77,7 @@ export default function DestinationDetailPage() {
             </h1>
             <p className="text-xl md:text-2xl text-foreground/90 flex items-center gap-2 drop-shadow-lg">
               <MapPin className="h-6 w-6" />
-              {destination.region}
+              {destination.state}
             </p>
           </div>
         </div>
@@ -87,38 +96,31 @@ export default function DestinationDetailPage() {
                 <CardContent>
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="flex items-start gap-3">
-                      <Calendar className="h-6 w-6 text-primary mt-0.5" />
+                      <MapPin className="h-6 w-6 text-primary mt-0.5" />
                       <div>
-                        <p className="font-semibold">Duration</p>
-                        <p className="text-sm text-muted-foreground">{destination.snapshot.duration}</p>
+                        <p className="font-semibold">Location</p>
+                        <p className="text-sm text-muted-foreground">{destination.location}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <Wallet className="h-6 w-6 text-primary mt-0.5" />
                       <div>
                         <p className="font-semibold">Budget Range</p>
-                        <p className="text-sm text-muted-foreground">{destination.snapshot.budget}</p>
+                        <p className="text-sm text-muted-foreground">{destination.budget}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <Calendar className="h-6 w-6 text-primary mt-0.5" />
                       <div>
-                        <p className="font-semibold">Best Season</p>
-                        <p className="text-sm text-muted-foreground">{destination.snapshot.bestSeason}</p>
+                        <p className="font-semibold">Best Time</p>
+                        <p className="text-sm text-muted-foreground">{destination.bestTime}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <TrendingUp className="h-6 w-6 text-primary mt-0.5" />
+                      <Mountain className="h-6 w-6 text-primary mt-0.5" />
                       <div>
-                        <p className="font-semibold">Difficulty</p>
-                        <p className="text-sm text-muted-foreground">{destination.snapshot.difficulty}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 sm:col-span-2">
-                      <Signal className="h-6 w-6 text-primary mt-0.5" />
-                      <div>
-                        <p className="font-semibold">Internet Availability</p>
-                        <p className="text-sm text-muted-foreground">{destination.snapshot.internet}</p>
+                        <p className="font-semibold">Region</p>
+                        <p className="text-sm text-muted-foreground">{destination.region}</p>
                       </div>
                     </div>
                   </div>
@@ -126,12 +128,13 @@ export default function DestinationDetailPage() {
               </Card>
             </MotionReveal>
 
-            {/* Why Visit */}
+            {/* Why Visit / Significance */}
             <MotionReveal>
               <section>
                 <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
                   Why Visit {destination.name}?
                 </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4">{destination.significance}</p>
                 <p className="text-lg text-muted-foreground leading-relaxed">{destination.description}</p>
               </section>
             </MotionReveal>
@@ -142,252 +145,83 @@ export default function DestinationDetailPage() {
             <MotionReveal>
               <section>
                 <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">How to Reach</h2>
+                <p className="text-lg text-muted-foreground mb-6">{destination.howToReach.summary}</p>
                 <div className="space-y-6">
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Plane className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">By Air</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">
-                        Nearest airport: Bhuntar (Kullu-Manali Airport) - 50 km
-                      </p>
-                      <p className="text-muted-foreground">
-                        From airport, take a taxi to Barshaini (₹1,500-2,000) or bus to Bhuntar town and then local transport.
-                      </p>
-                      <AffiliateCtaPlaceholder
-                        title="Compare Prices"
-                        description="Find the best flight deals"
-                        ctaText="Search Flights"
-                      />
-                    </CardContent>
-                  </Card>
+                  {destination.howToReach.byAir && (
+                    <Card className="card-glow">
+                      <CardHeader>
+                        <div className="flex items-center gap-3">
+                          <Plane className="h-6 w-6 text-primary" />
+                          <CardTitle className="text-xl">By Air</CardTitle>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground">{destination.howToReach.byAir}</p>
+                      </CardContent>
+                    </Card>
+                  )}
 
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Train className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">By Train</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground mb-2">
-                        Nearest railway station: Joginder Nagar - 144 km
-                      </p>
-                      <p className="text-muted-foreground">
-                        Better option: Chandigarh Railway Station (300 km), then take bus to Bhuntar/Kasol.
-                      </p>
-                    </CardContent>
-                  </Card>
+                  {destination.howToReach.byTrain && (
+                    <Card className="card-glow">
+                      <CardHeader>
+                        <div className="flex items-center gap-3">
+                          <Train className="h-6 w-6 text-primary" />
+                          <CardTitle className="text-xl">By Train</CardTitle>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground">{destination.howToReach.byTrain}</p>
+                      </CardContent>
+                    </Card>
+                  )}
 
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Bus className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">By Bus</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">
-                        Direct buses from Delhi to Bhuntar/Kasol (₹800-1,200). From Kasol, local bus or taxi to Barshaini, then 30-min trek to Pulga.
-                      </p>
-                      <AffiliateCtaPlaceholder
-                        title="Book This Hostel"
-                        description="Find overnight buses from major cities"
-                        ctaText="Search Buses"
-                        variant="secondary"
-                      />
-                    </CardContent>
-                  </Card>
+                  {destination.howToReach.byBus && (
+                    <Card className="card-glow">
+                      <CardHeader>
+                        <div className="flex items-center gap-3">
+                          <Bus className="h-6 w-6 text-primary" />
+                          <CardTitle className="text-xl">By Bus</CardTitle>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground">{destination.howToReach.byBus}</p>
+                      </CardContent>
+                    </Card>
+                  )}
                 </div>
               </section>
             </MotionReveal>
 
             <Separator />
 
-            {/* Where to Stay */}
+            {/* Activities */}
             <MotionReveal>
               <section>
-                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Where to Stay</h2>
-                <div className="space-y-6">
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Home className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">Budget Homestays</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">
-                        ₹500-800 per night. Basic rooms with shared bathrooms, home-cooked meals available. Perfect for experiencing authentic village life and connecting with local families.
-                      </p>
-                      <Badge variant="outline">Recommended for authentic experience</Badge>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Building2 className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">Guesthouses</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">
-                        ₹1,000-1,500 per night. Private rooms with attached bathrooms, mountain views, and basic amenities. A comfortable middle-ground option.
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Hotel className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">Hotels</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">
-                        ₹2,000-4,000 per night. While Pulga itself has limited hotel options, nearby Kasol and Manikaran offer comfortable hotels with modern amenities, hot water, WiFi, and in-house restaurants.
-                      </p>
-                      <AffiliateCtaPlaceholder
-                        title="Find Hotels"
-                        description="Browse hotels in Pulga and nearby areas"
-                        ctaText="Search Hotels"
-                      />
-                    </CardContent>
-                  </Card>
-
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Home className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">Airbnb</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">
-                        ₹1,500-3,500 per night. Unique stays including cozy cottages, traditional Himachali homes, and private apartments. Great for longer stays or groups seeking privacy and local character.
-                      </p>
-                      <AffiliateCtaPlaceholder
-                        title="Explore Airbnb"
-                        description="Discover unique stays and local experiences"
-                        ctaText="View Airbnb Listings"
-                        variant="secondary"
-                      />
-                    </CardContent>
-                  </Card>
-
-                  <TrustBadges />
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Activities</h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {destination.activities.map((activity, index) => (
+                    <Card key={index} className="card-glow">
+                      <CardContent className="pt-6">
+                        <div className="flex items-center gap-3">
+                          <Backpack className="h-5 w-5 text-primary" />
+                          <p className="font-medium">{activity}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </section>
             </MotionReveal>
 
             <Separator />
 
-            {/* Local Transport */}
+            {/* Travel Plan Idea */}
             <MotionReveal>
               <section>
-                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Local Transport</h2>
-                <div className="space-y-6">
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Bike className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">Rent a Bike</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">
-                        Explore the Parvati Valley at your own pace. Bikes available in Kasol and Bhuntar starting from ₹500-1,200 per day depending on the model. Royal Enfield and scooters are popular choices for the mountain roads.
-                      </p>
-                      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                        <li>Valid driving license required</li>
-                        <li>Helmets provided with rental</li>
-                        <li>Fuel not included in rental price</li>
-                        <li>Security deposit typically ₹2,000-5,000</li>
-                      </ul>
-                      <AffiliateCtaPlaceholder
-                        title="Book a Bike"
-                        description="Compare bike rental options and prices"
-                        ctaText="Find Bike Rentals"
-                      />
-                    </CardContent>
-                  </Card>
-
-                  <Card className="card-glow">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Car className="h-6 w-6 text-primary" />
-                        <CardTitle className="text-xl">Cab / Taxi</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">
-                        Local taxis and shared cabs are readily available for point-to-point travel. Shared taxis from Kasol to Barshaini cost ₹50-100 per person. Private taxis for day trips range from ₹1,500-3,000 depending on distance.
-                      </p>
-                      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                        <li>Shared taxis: Most economical option</li>
-                        <li>Private cabs: Book through your accommodation</li>
-                        <li>Negotiate fares before starting journey</li>
-                        <li>Limited availability after sunset</li>
-                      </ul>
-                      <AffiliateCtaPlaceholder
-                        title="Book a Cab"
-                        description="Pre-book cabs for hassle-free travel"
-                        ctaText="Find Cab Services"
-                        variant="secondary"
-                      />
-                    </CardContent>
-                  </Card>
-                </div>
-              </section>
-            </MotionReveal>
-
-            <Separator />
-
-            {/* Budget Breakdown */}
-            <MotionReveal>
-              <section>
-                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Budget Breakdown</h2>
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Travel Plan Idea</h2>
                 <Card className="card-glow">
-                  <CardContent className="pt-8">
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center text-lg">
-                        <span>Transport (Delhi-Pulga-Delhi)</span>
-                        <span className="font-bold">₹3,000</span>
-                      </div>
-                      <Separator />
-                      <div className="flex justify-between items-center text-lg">
-                        <span>Accommodation (3 nights)</span>
-                        <span className="font-bold">₹2,400</span>
-                      </div>
-                      <Separator />
-                      <div className="flex justify-between items-center text-lg">
-                        <span>Food (3 days)</span>
-                        <span className="font-bold">₹1,800</span>
-                      </div>
-                      <Separator />
-                      <div className="flex justify-between items-center text-lg">
-                        <span>Local transport & activities</span>
-                        <span className="font-bold">₹1,000</span>
-                      </div>
-                      <Separator />
-                      <div className="flex justify-between items-center text-lg">
-                        <span>Miscellaneous</span>
-                        <span className="font-bold">₹800</span>
-                      </div>
-                      <Separator className="my-6" />
-                      <div className="flex justify-between items-center text-2xl">
-                        <span className="font-bold">Total Estimated Cost</span>
-                        <span className="font-bold text-primary">₹9,000</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-6">
-                      * Costs are approximate and may vary based on season and personal preferences
-                    </p>
+                  <CardContent className="pt-6">
+                    <p className="text-lg text-muted-foreground leading-relaxed">{destination.travelPlanIdea}</p>
                   </CardContent>
                 </Card>
               </section>
@@ -402,28 +236,39 @@ export default function DestinationDetailPage() {
                   Frequently Asked Questions
                 </h2>
                 <Accordion type="single" collapsible className="space-y-4">
-                  <AccordionItem value="item-1" className="card-glow rounded-lg px-6">
-                    <AccordionTrigger className="text-lg font-semibold">
-                      Is Pulga safe for solo travelers?
+                  <AccordionItem value="item-1" className="border rounded-lg px-6">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                      Is {destination.name} safe for solo travelers?
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
-                      Yes, Pulga is very safe for solo travelers. The village is small and locals are friendly. However, always inform someone about your trekking plans.
+                      Yes, {destination.name} is generally safe for solo travelers. However, always inform someone about your itinerary, stay in touch with family/friends, and follow local guidelines. It's recommended to travel during daylight hours and stay in well-reviewed accommodations.
                     </AccordionContent>
                   </AccordionItem>
-                  <AccordionItem value="item-2" className="card-glow rounded-lg px-6">
-                    <AccordionTrigger className="text-lg font-semibold">
-                      What's the best time to visit?
+
+                  <AccordionItem value="item-2" className="border rounded-lg px-6">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                      What should I pack for {destination.name}?
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
-                      March to June and September to November are ideal. Avoid monsoon (July-August) due to landslides and winter (December-February) due to heavy snow.
+                      Pack comfortable trekking shoes, layered clothing, rain gear (if visiting during monsoon), sunscreen, basic first-aid kit, reusable water bottle, power bank, and any personal medications. Check the weather forecast before your trip and pack accordingly.
                     </AccordionContent>
                   </AccordionItem>
-                  <AccordionItem value="item-3" className="card-glow rounded-lg px-6">
-                    <AccordionTrigger className="text-lg font-semibold">
-                      Do I need permits?
+
+                  <AccordionItem value="item-3" className="border rounded-lg px-6">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                      Are there ATMs and mobile network available?
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
-                      No special permits are required for Pulga. However, if you plan to trek to Kheerganga, you may need to register at the forest checkpoint.
+                      Mobile network and ATM availability varies by location. It's best to carry sufficient cash and inform your bank about your travel plans. BSNL usually has better coverage in remote areas. Download offline maps before you travel.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-4" className="border rounded-lg px-6">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                      Can I visit {destination.name} with family/kids?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      Yes, {destination.name} can be visited with family. However, consider the difficulty level of activities and ensure children are comfortable with the terrain. Choose family-friendly accommodations and plan shorter, easier activities for younger kids.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -432,40 +277,30 @@ export default function DestinationDetailPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-6">
-              <MotionReveal delay={200}>
-                <Card className="card-glow gradient-sunrise">
-                  <CardHeader>
-                    <CardTitle className="text-xl">Plan Your Trip</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <Button className="w-full" size="lg">
-                      Download Guide (PDF)
-                    </Button>
-                    <Button variant="outline" className="w-full" size="lg">
-                      Save to Wishlist
-                    </Button>
-                  </CardContent>
-                </Card>
-              </MotionReveal>
-
-              <MotionReveal delay={300}>
-                <Card className="card-glow">
-                  <CardHeader>
-                    <CardTitle className="text-xl">Need Help?</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Have questions about this destination? We're here to help!
-                    </p>
-                    <Button variant="outline" className="w-full">
-                      Contact Us
-                    </Button>
-                  </CardContent>
-                </Card>
-              </MotionReveal>
-            </div>
+          <div className="space-y-8">
+            {/* Affiliate CTAs */}
+            <MotionReveal>
+              <div className="space-y-6 sticky top-24">
+                <AffiliateCtaPlaceholder
+                  title="Book Your Stay"
+                  description="Find the best accommodation deals"
+                  ctaText="Search Hotels"
+                />
+                <AffiliateCtaPlaceholder
+                  title="Travel Insurance"
+                  description="Protect your trip with comprehensive coverage"
+                  ctaText="Get Insured"
+                  variant="secondary"
+                />
+                <AffiliateCtaPlaceholder
+                  title="Travel Gear"
+                  description="Essential equipment for your adventure"
+                  ctaText="Shop Gear"
+                  variant="secondary"
+                />
+                <TrustBadges />
+              </div>
+            </MotionReveal>
           </div>
         </div>
       </div>

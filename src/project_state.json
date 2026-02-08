@@ -1,256 +1,48 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 15,
-  "summary": "Build \"Hidden Trails India\", an SEO-driven travel content + affiliate discovery platform for offbeat Indian destinations (18–35 audience), monetized via affiliate integrations/conversions; redesign UI into a vibrant, immersive, youth-focused cinematic/Instagram-meets-startup experience (dark base + vibrant accents, motion/micro-interactions), with all email capture/lead-magnet email list features explicitly removed.",
-  "architectural_notes": [
-    "Email functionality is out of scope: do not include any email capture, lead magnet forms requiring email, or email list growth flows.",
-    "Site should support future scalability toward travel app, AI itinerary planner, premium members-only content, paid consultations, and sponsored partnerships.",
-    "Design direction: cinematic/immersive youth-focused UI (adventure documentary + premium Instagram + modern startup) that stays bold but clean; avoid corporate/text-heavy/stock-photo-heavy vibe.",
-    "Typography direction: bold modern sans headline font (e.g., Poppins/Satoshi/Montserrat) + clean sans body; big type, strong contrast, generous spacing, short paragraphs.",
-    "Performance direction: mobile-first and fast-loading (optimize media like hero video + WebP images) while still supporting motion effects.",
-    "Hero micro-interactions must be CSS-first and lightweight: avoid third-party animation libraries and avoid scroll event listeners where possible; use GPU-friendly transforms (translateY/scale) with will-change; no layout reflow/jank; respect prefers-reduced-motion; reduce parallax intensity on <768px and disable on low-performance devices; target Safari/Chrome smoothness and Lighthouse performance.",
-    "Hero background enhancement: add a lightweight animated line-sketch layer (prefer SVG/CSS; avoid heavy JS/particle systems). Animate only transform/opacity/stroke-dashoffset with very slow cycles (15–25s), low opacity (5–12%), thin strokes (1–1.5px), faint blur glow (6–10px), reduce complexity ~50% on <768px, and fully disable for prefers-reduced-motion (static fallback)."
-  ],
+  "projectStateVersion": 3,
+  "summary": "Content project: create a structured travel guide of 50 offbeat/hidden gem places in India with complete details per place (location, significance, how to reach, activities, best time, travel plan idea).",
+  "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-remove-all-email-related-functionality-and-ui-from-the-app-including-any-lead-magnet-email-capture-newsletter-signup-forms-email-list-growth-flows-and-any-copy-that-asks-users-to-submit-an-email-address",
-      "title": "Remove all email-related functionality and UI from the app, including any lead-magnet email capture, newsletter/signup forms, email list growth flows, and any copy that asks users to submit an email address.",
+      "id": "feature-create-a-single-canonical-frontend-destinations-dataset-containing-all-50-offbeat-hidden-gem-places-in-india-with-complete-details-for-each-place-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-a-travel-plan-idea",
+      "title": "Create a single canonical frontend destinations dataset containing all 50 offbeat/hidden-gem places in India, with complete details for each place: Location, Why it’s special (significance), How to reach, Activities, Best time, and a Travel plan idea.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-ensure-all-remaining-conversion-and-monetization-ux-is-oriented-around-non-email-actions-e-g-exploring-destinations-budgeting-sections-affiliate-cta-placeholders-without-introducing-any-email-capture-as-a-replacement",
-      "title": "Ensure all remaining conversion and monetization UX is oriented around non-email actions (e.g., exploring destinations, budgeting sections, affiliate CTA placeholders) without introducing any email capture as a replacement.",
+      "id": "feature-update-the-destinations-listing-page-to-render-all-50-destinations-from-the-canonical-dataset-and-ensure-search-filter-continues-to-work-across-the-full-dataset",
+      "title": "Update the Destinations listing page to render all 50 destinations from the canonical dataset and ensure search/filter continues to work across the full dataset.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-destination-detail-page-to-load-the-destination-based-on-the-route-slug-and-render-the-destination-s-complete-details-sections-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-travel-plan-idea",
+      "title": "Update the Destination Detail page to load the destination based on the route slug and render the destination’s complete details sections: Location, Why it’s special (significance), How to reach, Activities, Best time, and Travel plan idea.",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-apply-a-coherent-consistent-visual-theme-for-hidden-trails-india-across-the-ui-colors-typography-spacing-and-components-aligned-to-a-clean-modern-travel-discovery-brand-include-a-dark-mode-option-and-avoid-blue-purple-dominant-styling",
-      "title": "Apply a coherent, consistent visual theme for Hidden Trails India across the UI (colors, typography, spacing, and components) aligned to a clean, modern travel discovery brand; include a dark mode option and avoid blue/purple-dominant styling.",
+      "id": "feature-for-destinations-where-the-user-supplied-image-urls-in-the-provided-list-store-and-display-at-least-one-of-those-urls-per-corresponding-destination-entry-for-destinations-without-supplied-image-urls-use-the-existing-local-fallback-images",
+      "title": "For destinations where the user supplied image URLs in the provided list, store and display at least one of those URLs per corresponding destination entry; for destinations without supplied image URLs, use the existing local fallback images.",
       "reqIds": [
         "REQ-4"
       ],
       "version": 1
     },
     {
-      "id": "feature-update-the-global-visual-identity-to-match-a-dark-vibrant-youth-focused-adventure-documentary-premium-instagram-feed-modern-startup-style-using-the-specified-palette-deep-charcoal-base-0f0f0f-with-vibrant-accents-emerald-00c896-sunset-orange-ff6b35-electric-blue-3a86ff-warm-sand-f4ede4-plus-gradient-overlays-inspired-by-mountain-sunrise-ocean-horizon-desert-sunset-ensure-the-theme-is-applied-consistently-across-home-destinations-destination-detail-blog-and-blog-post-pages-and-remains-clean-energetic-but-not-messy",
-      "title": "Update the global visual identity to match a dark, vibrant, youth-focused “adventure documentary + premium Instagram feed + modern startup” style using the specified palette: deep charcoal base (#0F0F0F) with vibrant accents (emerald #00C896, sunset orange #FF6B35, electric blue #3A86FF, warm sand #F4EDE4), plus gradient overlays inspired by mountain sunrise/ocean horizon/desert sunset; ensure the theme is applied consistently across Home, Destinations, Destination Detail, Blog, and Blog Post pages and remains clean (energetic but not messy).",
+      "id": "feature-update-the-home-page-featured-destinations-section-to-source-its-items-from-the-canonical-destinations-dataset-and-ensure-featured-items-exist-within-the-50-place-list",
+      "title": "Update the Home page featured destinations section to source its items from the canonical destinations dataset (and ensure featured items exist within the 50-place list).",
       "reqIds": [
         "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-redesign-the-home-page-hero-into-a-full-screen-cinematic-hero-with-a-looping-background-video-mountains-beaches-drone-footage-feel-a-glassmorphism-overlay-soft-blurred-dark-layer-headline-text-exactly-escape-the-ordinary-subheadline-exactly-discover-hidden-india-beyond-the-crowds-two-animated-cta-buttons-explore-hidden-trails-as-primary-with-glow-effect-and-plan-my-budget-trip-as-secondary-subtle-animated-gradient-shifts-in-the-hero-overlay-and-an-animated-scroll-indicator",
-      "title": "Redesign the Home page hero into a full-screen, cinematic hero with a looping background video (mountains/beaches/drone footage feel), a glassmorphism overlay (soft blurred dark layer), headline text exactly “ESCAPE THE ORDINARY”, subheadline exactly “Discover Hidden India Beyond the Crowds”, two animated CTA buttons (“Explore Hidden Trails” as primary with glow effect and “Plan My Budget Trip” as secondary), subtle animated gradient shifts in the hero overlay, and an animated scroll indicator.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-upgrade-navigation-to-be-sticky-transparent-at-the-top-of-the-page-and-transition-to-a-solid-background-on-scroll-add-hover-micro-interactions-including-animated-underlines-on-links-add-icons-beside-menu-items-and-update-navigation-items-to-include-destinations-blog-budget-and-community-with-appropriate-icons",
-      "title": "Upgrade navigation to be sticky, transparent at the top of the page, and transition to a solid background on scroll; add hover micro-interactions including animated underlines on links; add icons beside menu items and update navigation items to include “Destinations”, “Blog”, “Budget”, and “Community” (with appropriate icons).",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-redesign-destination-cards-used-on-home-featured-destinations-and-the-destinations-listing-page-into-a-more-immersive-dynamic-style-masonry-style-grid-on-larger-screens-rounded-corners-16px-soft-shadow-glow-and-hover-animation-that-slightly-zooms-the-image-fades-in-a-gradient-overlay-slides-location-tags-upward-and-fades-in-a-view-trail-button-add-tag-chips-for-activities-camping-trek-beach-valley-nature-with-vibrant-color-coding",
-      "title": "Redesign destination cards (used on Home featured destinations and the Destinations listing page) into a more immersive, dynamic style: masonry-style grid on larger screens, rounded corners (16px+), soft shadow/glow, and hover animation that slightly zooms the image, fades in a gradient overlay, slides location + tags upward, and fades in a “View Trail” button; add tag chips for activities (Camping, Trek, Beach, Valley, Nature) with vibrant color-coding.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-an-interactive-india-map-section-on-home-page-with-a-stylized-india-map-where-hovering-highlights-regions-and-displays-destination-counts-includes-a-subtle-zoom-animation-on-hover-and-clicking-a-region-smoothly-scrolls-to-the-corresponding-region-section-list-on-the-page",
-      "title": "Add an “Interactive India Map” section (on Home page) with a stylized India map where hovering highlights regions and displays destination counts, includes a subtle zoom animation on hover, and clicking a region smoothly scrolls to the corresponding region section/list on the page.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-social-proof-section-styled-like-an-instagram-gallery-polaroid-style-cards-that-include-an-image-a-username-a-short-caption-and-the-hashtag-text-hiddentrailsindia-present-as-a-horizontal-scroll-slider-with-snap-behavior-and-subtle-motion-tilt-styling-that-remains-clean",
-      "title": "Add a “Social Proof” section styled like an Instagram gallery: polaroid-style cards that include an image, a username, a short caption, and the hashtag text “#HiddenTrailsIndia”; present as a horizontal scroll slider with snap behavior and subtle motion/tilt styling that remains clean.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-a-motion-micro-interactions-layer-across-the-site-button-ripple-effect-smooth-parallax-on-selected-hero-section-backgrounds-fade-in-on-scroll-for-major-sections-scroll-triggered-animations-for-cards-headers-and-page-transition-animations-fade-slide-between-routes",
-      "title": "Implement a motion/micro-interactions layer across the site: button ripple effect, smooth parallax on selected hero/section backgrounds, fade-in-on-scroll for major sections, scroll-triggered animations for cards/headers, and page transition animations (fade/slide) between routes.",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-improve-the-mobile-experience-to-be-mobile-first-and-immersive-full-width-cards-swipe-based-destination-browsing-on-mobile-horizontal-scroll-with-snap-or-equivalent-sticky-bottom-navigation-bar-for-key-sections-thumb-friendly-cta-placement-and-faster-loading-images-prefer-webp-where-possible",
-      "title": "Improve the mobile experience to be mobile-first and immersive: full-width cards, swipe-based destination browsing on mobile (horizontal scroll with snap or equivalent), sticky bottom navigation bar for key sections, thumb-friendly CTA placement, and faster-loading images (prefer WebP where possible).",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-typography-to-match-the-requested-style-bold-modern-sans-serif-for-headlines-and-a-clean-minimal-sans-serif-for-body-increase-typographic-scale-for-hero-and-section-headers-maintain-strong-contrast-generous-spacing-and-short-paragraphs-across-pages",
-      "title": "Update typography to match the requested style: bold modern sans-serif for headlines and a clean minimal sans-serif for body; increase typographic scale for hero and section headers, maintain strong contrast, generous spacing, and short paragraphs across pages.",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-refine-conversion-monetization-ux-copy-to-be-subtle-but-powerful-replace-affiliate-language-with-benefit-driven-ctas-like-best-budget-stay-book-this-hostel-and-compare-prices-add-trust-badges-labeled-exactly-verified-stays-budget-approved-and-local-insight-in-relevant-sections-e-g-destination-detail-stay-transport-blocks-and-or-cta-sections",
-      "title": "Refine conversion/monetization UX copy to be subtle but powerful: replace “Affiliate” language with benefit-driven CTAs like “Best Budget Stay”, “Book This Hostel”, and “Compare Prices”; add trust badges labeled exactly “Verified Stays”, “Budget Approved”, and “Local Insight” in relevant sections (e.g., destination detail stay/transport blocks and/or CTA sections).",
-      "reqIds": [
-        "REQ-14"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-enhance-the-home-page-cinematic-hero-to-feel-more-premium-and-cinematic-while-keeping-all-existing-hero-copy-and-ctas-unchanged-headline-must-remain-exactly-escape-the-ordinary-subheadline-must-remain-exactly-discover-hidden-india-beyond-the-crowds-and-cta-labels-must-remain-exactly-explore-hidden-trails-and-plan-my-budget-trip",
-      "title": "Enhance the Home page cinematic hero to feel more premium and “cinematic” while keeping all existing hero copy and CTAs unchanged (headline must remain exactly “ESCAPE THE ORDINARY”, subheadline must remain exactly “Discover Hidden India Beyond the Crowds”, and CTA labels must remain exactly “Explore Hidden Trails” and “Plan My Budget Trip”).",
-      "reqIds": [
-        "REQ-15"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-improve-hero-background-video-resilience-and-perceived-performance-in-frontend-src-components-cinematichero-tsx-keep-using-assets-hero-hero-cinematic-loop-mp4-but-add-a-robust-loading-fallback-experience-e-g-smooth-fade-in-when-video-is-ready-a-visually-pleasing-fallback-when-it-is-not-and-an-explicit-user-interaction-affordance-if-autoplay-is-blocked",
-      "title": "Improve hero background video resilience and perceived performance in frontend/src/components/CinematicHero.tsx: keep using /assets/hero/hero-cinematic-loop.mp4, but add a robust loading/fallback experience (e.g., smooth fade-in when video is ready, a visually pleasing fallback when it is not, and an explicit user interaction affordance if autoplay is blocked).",
-      "reqIds": [
-        "REQ-16"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-refine-the-hero-overlay-atmosphere-to-increase-cinematic-depth-e-g-subtle-vignette-film-grain-light-leaks-or-gradient-glow-layers-while-respecting-the-existing-dark-vibrant-palette-and-keeping-the-ui-readable-in-both-light-and-dark-modes",
-      "title": "Refine the hero overlay/atmosphere to increase “cinematic” depth (e.g., subtle vignette, film-grain, light leaks, or gradient glow layers) while respecting the existing dark vibrant palette and keeping the UI readable in both light and dark modes.",
-      "reqIds": [
-        "REQ-17"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-hero-motion-effects-respect-accessibility-settings-the-refined-cinematic-hero-must-honor-prefers-reduced-motion-so-that-any-added-animations-overlay-movement-crossfades-indicators-are-reduced-disabled-appropriately-while-preserving-layout-and-functionality",
-      "title": "Ensure hero motion effects respect accessibility settings: the refined cinematic hero must honor prefers-reduced-motion so that any added animations (overlay movement, crossfades, indicators) are reduced/disabled appropriately while preserving layout and functionality.",
-      "reqIds": [
-        "REQ-18"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-generated-static-image-assets-used-by-the-refined-hero-atmosphere-if-needed-under-frontend-public-assets-generated-and-render-them-directly-from-the-frontend-do-not-route-images-through-the-backend",
-      "title": "Add generated static image assets used by the refined hero atmosphere (if needed) under frontend/public/assets/generated and render them directly from the frontend (do not route images through the backend).",
-      "reqIds": [
-        "REQ-19"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-a-subtle-premium-parallax-effect-limited-to-the-cinematichero-background-layer-s-hero-background-video-fallback-gradient-and-optionally-one-secondary-atmospheric-layer-using-gpu-accelerated-css-transforms-only-and-keeping-vertical-motion-within-a-maximum-of-15-25px",
-      "title": "Implement a subtle, premium parallax effect limited to the CinematicHero background layer(s) (hero background video/fallback gradient and optionally one secondary atmospheric layer), using GPU-accelerated CSS transforms only and keeping vertical motion within a maximum of 15–25px.",
-      "reqIds": [
-        "REQ-20"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-the-hero-parallax-effect-is-performance-optimized-avoid-continuous-work-when-the-hero-is-off-screen-avoid-scroll-jank-and-do-not-introduce-any-third-party-animation-libraries-or-heavy-js-frameworks",
-      "title": "Ensure the hero parallax effect is performance-optimized: avoid continuous work when the hero is off-screen, avoid scroll jank, and do not introduce any third-party animation libraries or heavy JS frameworks.",
-      "reqIds": [
-        "REQ-21"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-adapt-the-hero-parallax-for-accessibility-and-device-capability-disable-parallax-entirely-when-prefers-reduced-motion-is-enabled-reduce-parallax-intensity-by-60-on-screens-under-768px-and-disable-parallax-on-low-performance-devices",
-      "title": "Adapt the hero parallax for accessibility and device capability: disable parallax entirely when prefers-reduced-motion is enabled; reduce parallax intensity by ~60% on screens under 768px; and disable parallax on low-performance devices.",
-      "reqIds": [
-        "REQ-22"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-refine-the-primary-hero-cta-explore-hidden-trails-hover-micro-interaction-to-be-soft-premium-and-non-neon-add-a-subtle-layered-box-shadow-glow-slight-brightness-increase-and-a-very-light-scale-max-1-02-with-a-smooth-200-300ms-transition-keep-text-readable-and-contrast-compliant",
-      "title": "Refine the primary hero CTA (“Explore Hidden Trails”) hover micro-interaction to be soft, premium, and non-neon: add a subtle layered box-shadow glow, slight brightness increase, and a very light scale (max 1.02) with a smooth 200–300ms transition; keep text readable and contrast-compliant.",
-      "reqIds": [
-        "REQ-23"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-all-hero-motion-parallax-and-cta-hover-complies-with-accessibility-respect-prefers-reduced-motion-avoid-distracting-motion-and-ensure-no-animations-auto-play-outside-the-hero",
-      "title": "Ensure all hero motion (parallax and CTA hover) complies with accessibility: respect prefers-reduced-motion, avoid distracting motion, and ensure no animations auto-play outside the hero.",
-      "reqIds": [
-        "REQ-24"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-new-subtle-animated-line-sketch-overlay-layer-to-the-home-hero-frontend-src-components-cinematichero-tsx-using-svg-animated-paths-preferred-that-resemble-minimal-abstract-mountain-contours-topographic-lines-wavy-route-trails-and-ensure-it-does-not-reduce-headline-cta-readability",
-      "title": "Add a new subtle animated “line sketch” overlay layer to the Home hero (frontend/src/components/CinematicHero.tsx) using SVG animated paths (preferred) that resemble minimal abstract mountain contours/topographic lines/wavy route trails, and ensure it does not reduce headline/CTA readability.",
-      "reqIds": [
-        "REQ-25"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-motion-for-the-line-sketch-overlay-to-feel-calm-but-alive-very-slow-smooth-linear-drift-and-or-stroke-dashoffset-animation-with-no-bouncing-and-no-visible-looping-jumps-targeting-15-25-seconds-per-full-cycle-include-a-very-faint-glow-blur-6-10px-and-use-brand-matching-line-colors-teal-family-soft-sky-blue-very-soft-coral-accent-at-low-opacity-and-occasional-white-at-5-8-opacity",
-      "title": "Implement motion for the line-sketch overlay to feel “calm but alive”: very slow, smooth, linear drift and/or stroke-dashoffset animation with no bouncing and no visible looping jumps, targeting ~15–25 seconds per full cycle; include a very faint glow (blur ~6–10px) and use brand-matching line colors (teal family, soft sky blue, very soft coral accent at low opacity, and occasional white at ~5–8% opacity).",
-      "reqIds": [
-        "REQ-26"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-optimize-the-line-sketch-overlay-for-accessibility-and-mobile-performance-reduce-animation-complexity-by-50-on-screens-under-768px-fewer-lines-and-or-simpler-paths-and-fully-disable-animation-when-prefers-reduced-motion-is-enabled-showing-a-static-version-of-the-sketch-background-instead",
-      "title": "Optimize the line-sketch overlay for accessibility and mobile performance: reduce animation complexity by ~50% on screens under 768px (fewer lines and/or simpler paths) and fully disable animation when prefers-reduced-motion is enabled, showing a static version of the sketch background instead.",
-      "reqIds": [
-        "REQ-27"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-optional-premium-touch-include-one-subtle-animated-travel-path-line-in-the-hero-sketch-overlay-that-gently-animates-like-a-route-being-drawn-fades-out-softly-and-repeats-every-20-30-seconds-without-distracting-from-the-hero-content",
-      "title": "Add the optional premium touch: include one subtle animated “travel path” line in the hero sketch overlay that gently animates like a route being drawn, fades out softly, and repeats every ~20–30 seconds without distracting from the hero content.",
-      "reqIds": [
-        "REQ-28"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-destination-detail-page-ui-to-include-a-dedicated-lodging-section-that-explicitly-covers-hotels-and-airbnb-options-in-addition-to-any-existing-homestay-guesthouse-content-with-clear-headings-and-concise-guidance-in-english",
-      "title": "Update the Destination Detail page UI to include a dedicated lodging section that explicitly covers “Hotels” and “Airbnb” options (in addition to any existing homestay/guesthouse content), with clear headings and concise guidance in English.",
-      "reqIds": [
-        "REQ-29"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-new-local-transport-section-to-the-destination-detail-page-that-covers-common-options-such-as-renting-a-bike-and-hiring-a-cab-taxi-using-the-existing-component-patterns-cards-icons-and-affiliatectaplaceholder-style-cta-placeholders-where-appropriate",
-      "title": "Add a new “Local Transport” section to the Destination Detail page that covers common options such as renting a bike and hiring a cab/taxi, using the existing component patterns (Cards, icons, and AffiliateCtaPlaceholder-style CTA placeholders where appropriate).",
-      "reqIds": [
-        "REQ-30"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-only-the-selected-element-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-div-1-section-1-div-5-button-1-div-1-span-1-so-that-it-is-visually-centered-within-the-app-layout-center-aligned-within-its-available-width-apply-styling-changes-only-to-this-span-e-g-make-it-full-width-and-center-its-text-without-moving-resizing-or-restyling-other-elements",
-      "title": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within the app layout (center-aligned within its available width). Apply styling changes only to this `<span>` (e.g., make it full-width and center its text) without moving, resizing, or restyling other elements.",
-      "reqIds": [
-        "REQ-31"
       ],
       "version": 1
     }
@@ -258,135 +50,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Create the Hidden Trails India website/app structure (homepage + destination pages + blog) as an SEO-driven affiliate travel discovery platform",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Homepage conversion-focused layout with hero CTAs, differentiators/trust signals, featured destinations grid, and explore-by-budget sections",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Destination page template with SEO header, snapshot box (duration/budget/season/difficulty/internet), logistics (how to reach), itinerary, budget breakdown, things to do, gear section, and FAQ",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Affiliate monetization integration placeholders for travel booking (hotel/flight/bus/train), travel gear, travel insurance, and sponsored feature spots",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "SEO content architecture: pillar pages + supporting blog clusters with strategic internal linking and proper H1–H3 + schema/FAQ schema guidance",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Design/UX requirements: clean modern mobile-first fast-loading layout with sticky nav, clear CTAs, minimal distractions, and dark mode option",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Remove all email-related features (no lead magnet email capture, no email list growth flows)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "Remove any backend data models, endpoints, or persistence related to emails or email subscribers (e.g., storing subscriber name/email, subscription status, or lead-magnet fulfillment).",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Visual identity upgrade: dark charcoal base with vibrant accent palette + gradient overlays (mountain/ocean/desert) and subtle animated gradient shifts (esp. hero)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Hero redesign: full-screen cinematic background video with glassmorphism overlay, bold headline/subheadline, animated CTAs, and scroll-indicator animation",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-12",
-      "summary": "Navigation redesign: transparent-to-solid on scroll, sticky behavior, hover micro-interactions/animated underlines, and icons for key menu items",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-13",
-      "summary": "Destination card redesign: masonry grid, rounded corners, glow/shadow, hover animations (zoom/overlay/slide-up tags) with tag chips and color coding",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-14",
-      "summary": "Add interactive India map section with hover region highlights, destination counts, subtle zoom, and click-to-scroll to region sections",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-15",
-      "summary": "Add social proof section: Instagram-style gallery (polaroid cards, usernames/captions, #HiddenTrailsIndia) with horizontal scroll slider",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-16",
-      "summary": "Motion/micro-interactions layer: button ripple, parallax, fade-in/scroll-triggered animations, and page transition animations",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-17",
-      "summary": "Mobile-first UX enhancements: immersive full-width cards, swipe-based destination browsing, sticky bottom nav, thumb-friendly CTAs, and fast-loading WebP images",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-18",
-      "summary": "Conversion UX copy/trust: replace \"Affiliate\" language with benefit-driven CTAs (e.g., Best Budget Stay) and add trust badges (Verified Stays/Budget Approved/Local Insight)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-19",
-      "summary": "Refine/iterate on the Home page cinematic hero experience (background video feel, glassmorphism overlay, animated gradient shifts, CTAs, scroll indicator, overall motion polish)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-20",
-      "summary": "Enhance Home hero with subtle, performance-optimized micro-interactions: slow parallax (15–25px, reduced on mobile, disabled for prefers-reduced-motion/low-perf devices) and premium non-neon glow hover effect on primary CTA; CSS-first and Lighthouse-friendly",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-21",
-      "summary": "Add subtle animated line-sketch/contour background layer to the Home hero (Gen-Z premium): slow-drifting SVG/CSS lines (topographic/mountain/route vibe), low opacity, faint glow, mobile-reduced complexity, and disabled on prefers-reduced-motion",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-22",
-      "summary": "Add lodging and local transport sections to destination pages (e.g., Hotels/Airbnb recommendations and local transport options like bike rentals and cabs)",
+      "summary": "Expand the provided list of 50 offbeat/hidden gem places in India into complete entries with full details (location, why special, how to reach, activities, best time, travel plan idea) for each place.",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Hidden Trails India",
+  "projectName": "Add complete 50-place Hidden Gems India destination dataset and render full details across listing and detail pages",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

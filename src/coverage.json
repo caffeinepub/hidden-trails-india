@@ -1,24 +1,76 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T11:07:23.604Z",
+  "generatedAt": "2026-02-08T12:19:28.630Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 5,
+    "implemented": 5,
     "items": [
       {
-        "id": "REQ-31",
-        "summary": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/section[1]/div[5]/button[1]/div[1]/span[1]` so that it is visually centered within the app layout (center-aligned within its available width). Apply styling changes only to this `<span>` (e.g., make it full-width and center its text) without moving, resizing, or restyling other elements.",
+        "id": "REQ-1",
+        "summary": "Create a single canonical frontend destinations dataset containing all 50 offbeat/hidden-gem places in India, with complete details for each place: Location, Why it’s special (significance), How to reach, Activities, Best time, and a Travel plan idea.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+          "frontend/src/data/destinations.ts",
+          "frontend/src/data/destinationTypes.ts"
         ],
         "matchedFiles": [
-          "frontend/src/components/AffiliateCtaPlaceholder.tsx"
+          "frontend/src/data/destinations.ts",
+          "frontend/src/data/destinationTypes.ts"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Update the Destinations listing page to render all 50 destinations from the canonical dataset and ensure search/filter continues to work across the full dataset.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/DestinationsPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DestinationsPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Update the Destination Detail page to load the destination based on the route slug and render the destination’s complete details sections: Location, Why it’s special (significance), How to reach, Activities, Best time, and Travel plan idea.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/DestinationDetailPage.tsx",
+          "frontend/src/components/SafeImage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DestinationDetailPage.tsx",
+          "frontend/src/components/SafeImage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "For destinations where the user supplied image URLs in the provided list, store and display at least one of those URLs per corresponding destination entry; for destinations without supplied image URLs, use the existing local fallback images.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/data/destinations.ts",
+          "frontend/src/components/DestinationCard.tsx",
+          "frontend/src/pages/DestinationDetailPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/destinations.ts",
+          "frontend/src/components/DestinationCard.tsx",
+          "frontend/src/pages/DestinationDetailPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Update the Home page featured destinations section to source its items from the canonical destinations dataset (and ensure featured items exist within the 50-place list).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/HomePage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/HomePage.tsx"
         ]
       }
     ]
@@ -28,7 +80,17 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/AffiliateCtaPlaceholder.tsx",
+    "frontend/src/components/DestinationCard.tsx",
+    "frontend/src/components/SafeImage.tsx",
+    "frontend/src/components/SocialProofGallery.tsx",
+    "frontend/src/components/TagChip.tsx",
+    "frontend/src/data/destinationTypes.ts",
+    "frontend/src/data/destinations.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/DestinationDetailPage.tsx",
+    "frontend/src/pages/DestinationsPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
