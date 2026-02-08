@@ -4,13 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import MotionReveal from '@/components/MotionReveal';
-import SafeImage from '@/components/SafeImage';
 
 const featuredPost = {
   slug: 'budget-travel-tips',
   title: '10 Budget Travel Tips for Exploring Hidden India',
   excerpt: 'Learn how to travel across India on a shoestring budget without compromising on experiences.',
-  image: '/assets/generated/image-fallback-landscape.dim_1600x900.png',
+  image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&q=80',
   category: 'Travel Tips',
   readTime: '8 min read',
   date: 'March 15, 2024',
@@ -21,7 +20,7 @@ const blogPosts = [
     slug: 'packing-guide',
     title: 'Ultimate Packing Guide for Himalayan Treks',
     excerpt: 'Everything you need to pack for a comfortable and safe trek in the Himalayas.',
-    image: '/assets/generated/image-fallback-landscape.dim_1600x900.png',
+    image: 'https://images.unsplash.com/photo-1622260614927-d4e1b6c0b0c0?w=800&q=80',
     category: 'Gear',
     readTime: '6 min read',
     date: 'March 10, 2024',
@@ -30,7 +29,7 @@ const blogPosts = [
     slug: 'solo-travel',
     title: 'Solo Travel Safety Tips for Women in India',
     excerpt: 'Essential safety tips and advice for women traveling solo in India.',
-    image: '/assets/generated/image-fallback-landscape.dim_1600x900.png',
+    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80',
     category: 'Safety',
     readTime: '7 min read',
     date: 'March 5, 2024',
@@ -39,7 +38,7 @@ const blogPosts = [
     slug: 'photography-tips',
     title: 'Landscape Photography Tips for Mountain Destinations',
     excerpt: 'Capture stunning mountain landscapes with these photography techniques.',
-    image: '/assets/generated/image-fallback-landscape.dim_1600x900.png',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
     category: 'Photography',
     readTime: '5 min read',
     date: 'February 28, 2024',
@@ -48,7 +47,7 @@ const blogPosts = [
     slug: 'offseason-travel',
     title: 'Why Off-Season Travel is the Best Decision',
     excerpt: 'Discover the benefits of traveling during off-peak seasons.',
-    image: '/assets/generated/image-fallback-landscape.dim_1600x900.png',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
     category: 'Travel Tips',
     readTime: '4 min read',
     date: 'February 20, 2024',
@@ -80,7 +79,7 @@ export default function BlogPage() {
             <Card className="overflow-hidden card-glow hover:card-glow-hover transition-all">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="aspect-[4/3] md:aspect-auto overflow-hidden">
-                  <SafeImage
+                  <img
                     src={featuredPost.image}
                     alt={featuredPost.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -123,7 +122,7 @@ export default function BlogPage() {
               <Link to="/blog/$slug" params={{ slug: post.slug }} className="group block h-full">
                 <Card className="overflow-hidden h-full card-glow hover:card-glow-hover transition-all">
                   <div className="aspect-[16/10] overflow-hidden">
-                    <SafeImage
+                    <img
                       src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

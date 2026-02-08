@@ -1,126 +1,99 @@
 {
   "kind": "build_request",
-  "title": "Add complete 50-place Hidden Gems India destination dataset and render full details across listing and detail pages",
+  "title": "Fix region selection so each India region shows its own destinations + add offbeat destinations for all regions (Pulga-style details)",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Create a single canonical frontend destinations dataset containing all 50 offbeat/hidden-gem places in India, with complete details for each place: Location, Why it’s special (significance), How to reach, Activities, Best time, and a Travel plan idea.",
+      "text": "Fix the region-selection behavior so that clicking a region (North/South/East/West/Northeast) does not always show North India destinations; instead, it must show destinations for the clicked region.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-5"
         ],
         "quotes": [
-          "Add this places with complete details"
+          "Whenever we are clicking on any region, it's only showing the North India destinations."
         ]
       },
       "acceptanceCriteria": [
-        "The dataset contains exactly 50 destinations matching the user-provided list (1–50) and names/regions align with the user’s list.",
-        "Each destination entry includes: slug, name, state/region, location text, significance text, how-to-reach text (can be structured), activities list, best-time text, and travel-plan-idea text.",
-        "All user-facing strings for these details are in English.",
-        "The dataset is imported and reused wherever destination data is needed (no duplicated hardcoded destination arrays across pages)."
+        "Clicking each region marker (north/south/east/west/northeast) results in a destinations view filtered to that region (not North-only).",
+        "North shows only North destinations; South shows only South destinations; East shows only East destinations; West shows only West destinations; Northeast shows only Northeast destinations.",
+        "No region click leads to an unfiltered list unless the user explicitly clears the region filter."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Update the Destinations listing page to render all 50 destinations from the canonical dataset and ensure search/filter continues to work across the full dataset.",
+      "text": "Implement region-aware filtering in the destinations flow using a consistent region identifier shared between the map and the destinations dataset (e.g., 'north' | 'south' | 'east' | 'west' | 'northeast'), so the UI can reliably filter destinations by macro-region instead of only by state name.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-5"
         ],
         "quotes": [
-          "Ultimate List of 50 Offbeat & Hidden Gem Places in India",
-          "Add this places with complete details"
+          "Now add offbeat destinations to all the regions in the same format, like pulga"
         ]
       },
       "acceptanceCriteria": [
-        "/destinations shows 50 destinations by default (before search/filter).",
-        "Search matches against destination name, state/region, and short description/significance text.",
-        "Existing budget tabs continue to function; destinations that do not have explicit budget ranges in the content should still display a sensible budget label rather than breaking the UI (e.g., a default range or 'Varies').",
-        "Destination cards link correctly to /destinations/$slug for every destination in the dataset."
+        "Each destination in the shared data source can be deterministically assigned to exactly one macro-region used by the map (north/south/east/west/northeast).",
+        "The destinations listing page can filter by the selected macro-region without relying on brittle string matching against state names.",
+        "If an unknown/unsupported region id is encountered, the app falls back to showing all destinations (or a clear empty-state), and does not default to North India."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Update the Destination Detail page to load the destination based on the route slug and render the destination’s complete details sections: Location, Why it’s special (significance), How to reach, Activities, Best time, and Travel plan idea.",
+      "text": "Add offbeat destinations to ALL macro-regions (North, South, East, West, Northeast) in the same Pulga-style detail format (i.e., each destination must include all detail page fields used by DestinationDetailPage: tagline, heroImage, snapshot, detailedDescription, transport, accommodation, localTransport, budgetBreakdown, budgetTotal, faqs).",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-5"
         ],
         "quotes": [
-          "To keep it structured and useful... each place includes: Location, Why it’s special (Significance), How to reach, Activities, Best time, Travel plan idea"
+          "Now add offbeat destinations to all the regions in the same format, like pulga"
         ]
       },
       "acceptanceCriteria": [
-        "Navigating to /destinations/$slug renders the matching destination content from the canonical dataset (no hardcoded 'Pulga' detail).",
-        "The page visibly includes all required detail sections for each destination: Location, Significance, How to reach, Activities, Best time, and Travel plan idea.",
-        "If an unknown slug is visited, the UI shows a user-friendly 'not found' state with a link back to /destinations (no blank page or runtime error)."
+        "The dataset in frontend/src/data/destinations.ts includes multiple destinations across all five macro-regions (north/south/east/west/northeast), not just North.",
+        "Every newly added destination renders a complete detail page with the exact same sections/layout as Pulga (no missing fields/sections).",
+        "From the destinations list, clicking any newly added destination opens its own unique detail content (not Pulga’s content)."
       ]
     },
     {
       "id": "REQ-4",
-      "text": "For destinations where the user supplied image URLs in the provided list, store and display at least one of those URLs per corresponding destination entry; for destinations without supplied image URLs, use the existing local fallback images.",
+      "text": "Update the interactive region UI to reflect the actual destinations dataset per region (e.g., counts shown in tooltips and any region-specific sections), so displayed counts and region content stay consistent with the underlying data.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-5"
         ],
         "quotes": [
-          "![Image](https://upload.wikimedia.org/wikipedia/commons/7/76/Habba_Khatoon.jpg)",
-          "![Image](https://www.ravenouslegs.com/uploads/4/2/3/4/42340821/tirthan-river-in-tirthan-valley_orig.jpeg)"
+          "Whenever we are clicking on any region, it's only showing the North India destinations."
         ]
       },
       "acceptanceCriteria": [
-        "Destinations with provided image URLs (e.g., Gurez Valley, Tirthan Valley, Kalpa, Chitkul, Barot Valley, Chopta, Munsiyari, Dzukou Valley, Ziro Valley, Majuli) render using those URLs at least on the destination cards and/or destination detail hero.",
-        "All destination imagery uses the existing SafeImage fallback behavior so a failed external image load degrades to the local fallback assets without broken-image icons.",
-        "No backend is introduced for image proxying; images are referenced directly by URL or via existing local assets under frontend/public."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Update the Home page featured destinations section to source its items from the canonical destinations dataset (and ensure featured items exist within the 50-place list).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Ultimate List of 50 Offbeat & Hidden Gem Places in India"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Home page featured destinations are selected from the same canonical dataset used on /destinations.",
-        "Featured destination links resolve to valid /destinations/$slug routes for those featured items.",
-        "No separate hardcoded destination arrays remain on HomePage for featured destinations."
+        "Region destination counts displayed in the map tooltip match the number of destinations in that region in the shared dataset.",
+        "Adding/removing destinations in the dataset automatically changes the displayed counts without needing manual edits to hardcoded numbers.",
+        "The map remains functional and the selected element (the map image at the provided XPath) continues to render correctly."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (read-only).",
-    "Do not edit immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
-    "Do not add any email capture, newsletter signup, or email-based flows (explicitly out of scope per project state).",
-    "Do not introduce additional backend services; keep within the existing single-actor Motoko backend (no new backend needed for static destination content)."
+    "Frontend must not modify files under frontend/src/components/ui or any path listed in frontend.immutablePaths (compose existing UI components instead).",
+    "Backend must remain single-actor Motoko; do not introduce external databases or services.",
+    "Use English for all user-facing text."
   ],
   "nonGoals": [
-    "Implementing real affiliate booking, payments, or external travel APIs.",
-    "Adding user accounts beyond existing Internet Identity support.",
-    "Building an admin CMS/editor UI for managing destinations."
+    "Do not add third-party auth providers (only Internet Identity is allowed).",
+    "Do not add real-time features (WebSockets/chat).",
+    "Do not build a new backend storage system for destinations; keep destinations as the shared frontend data source unless explicitly requested."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
   },
   "userProfileUpdate": {
-    "goalsToAdd": [
-      "Publish a structured travel guide of 50 offbeat/hidden-gem places in India with complete per-place details across listing and detail views."
-    ],
+    "goalsToAdd": [],
     "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Ensure destination content is in English and consistently structured (Location, Significance, How to reach, Activities, Best time, Travel plan idea)."
-    ],
+    "preferencesToAdd": [],
     "preferencesToRemove": [],
     "miscToAdd": [],
     "miscToRemove": [],

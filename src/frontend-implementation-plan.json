@@ -1,107 +1,89 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Hidden Gems India: canonical 50-destination dataset wired into listing, detail, and home featured sections",
+  "title": "Region-correct destination filtering + offbeat destinations across India (Pulga-style details)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Create a single canonical destinations dataset (50 places) with complete structured details and reusable import across pages.",
+      "summary": "Make region selection (North/South/East/West/Northeast) navigate to Destinations with the clicked region applied (not North-only).",
       "acceptanceCriteria": [
-        "The dataset contains exactly 50 destinations matching the user-provided list (1–50) and names/regions align with the user’s list.",
-        "Each destination entry includes: slug, name, state/region, location text, significance text, how-to-reach text (can be structured), activities list, best-time text, and travel-plan-idea text.",
-        "All user-facing strings for these details are in English.",
-        "The dataset is imported and reused wherever destination data is needed (no duplicated hardcoded destination arrays across pages)."
+        "Clicking each region marker (north/south/east/west/northeast) results in a destinations view filtered to that region (not North-only).",
+        "North shows only North destinations; South shows only South destinations; East shows only East destinations; West shows only West destinations; Northeast shows only Northeast destinations.",
+        "No region click leads to an unfiltered list unless the user explicitly clears the region filter."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/data/destinations.ts",
-          "operation": "create",
-          "description": "Create the canonical destinations dataset export containing exactly 50 destination objects with the required fields (slug, name, state/region, location, significance, howToReach, activities, bestTime, travelPlanIdea) and any UI helper fields (e.g., budget label/category, card blurb) needed by existing pages. Ensure all strings are English."
+          "path": "frontend/src/components/InteractiveIndiaMap.tsx",
+          "operation": "modify",
+          "description": "Update region marker click handling to use TanStack Router navigation to the Destinations page with a macro-region search param (e.g., region=north) instead of scrolling to in-page sections; also remove any implicit default-to-north behavior. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/data/destinationTypes.ts",
-          "operation": "create",
-          "description": "Add shared TypeScript types/interfaces for destination data (including how-to-reach shape and optional image URL fields) so DestinationsPage, DestinationDetailPage, and HomePage consume the same canonical structure."
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Update the 'Explore <Region> Destinations' buttons in region sections to deep-link to the Destinations page with the correct macro-region search param so the user lands on a filtered list. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DestinationsPage.tsx",
+          "operation": "modify",
+          "description": "Add support for a macro-region search param that filters the listing; include a clear 'region filter' UI state and a way to clear it back to 'all destinations' without resetting to North. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Render all 50 destinations on /destinations from the canonical dataset and keep search/budget filtering working for the full list.",
+      "summary": "Introduce a shared macro-region identifier across map + dataset and use it for deterministic region filtering with safe fallback behavior.",
       "acceptanceCriteria": [
-        "/destinations shows 50 destinations by default (before search/filter).",
-        "Search matches against destination name, state/region, and short description/significance text.",
-        "Existing budget tabs continue to function; destinations that do not have explicit budget ranges in the content should still display a sensible budget label rather than breaking the UI (e.g., a default range or 'Varies').",
-        "Destination cards link correctly to /destinations/$slug for every destination in the dataset."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/DestinationsPage.tsx",
-          "operation": "modify",
-          "description": "Replace the local hardcoded allDestinations array with an import from the canonical dataset. Update filtering to search across name, region, and significance (or a derived short description). Ensure budget tab filtering remains functional for all 50 entries, including a safe default budget label/category when missing so the UI never breaks."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Load destination details by route slug and render all required detail sections with a friendly not-found state.",
-      "acceptanceCriteria": [
-        "Navigating to /destinations/$slug renders the matching destination content from the canonical dataset (no hardcoded 'Pulga' detail).",
-        "The page visibly includes all required detail sections for each destination: Location, Significance, How to reach, Activities, Best time, and Travel plan idea.",
-        "If an unknown slug is visited, the UI shows a user-friendly 'not found' state with a link back to /destinations (no blank page or runtime error)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/DestinationDetailPage.tsx",
-          "operation": "modify",
-          "description": "Refactor the page to look up the destination by the route slug from the canonical dataset and render the required sections: Location, Why it’s special (significance), How to reach, Activities, Best time, Travel plan idea. Add a user-friendly not-found state (with link back to /destinations) when no destination matches the slug."
-        },
-        {
-          "path": "frontend/src/components/SafeImage.tsx",
-          "operation": "modify",
-          "description": "Ensure SafeImage usage supports destination detail hero and cards with reliable fallback behavior for external URLs (no broken-image icons). Keep existing fallback behavior intact and confirm it works for both local and remote sources."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Store and display provided external image URLs per destination when available; otherwise use existing local fallback images via SafeImage.",
-      "acceptanceCriteria": [
-        "Destinations with provided image URLs (e.g., Gurez Valley, Tirthan Valley, Kalpa, Chitkul, Barot Valley, Chopta, Munsiyari, Dzukou Valley, Ziro Valley, Majuli) render using those URLs at least on the destination cards and/or destination detail hero.",
-        "All destination imagery uses the existing SafeImage fallback behavior so a failed external image load degrades to the local fallback assets without broken-image icons.",
-        "No backend is introduced for image proxying; images are referenced directly by URL or via existing local assets under frontend/public."
+        "Each destination in the shared data source can be deterministically assigned to exactly one macro-region used by the map (north/south/east/west/northeast).",
+        "The destinations listing page can filter by the selected macro-region without relying on brittle string matching against state names.",
+        "If an unknown/unsupported region id is encountered, the app falls back to showing all destinations (or a clear empty-state), and does not default to North India."
       ],
       "file_operations": [
         {
           "path": "frontend/src/data/destinations.ts",
           "operation": "modify",
-          "description": "Add/normalize image fields per destination entry: for places where the user provided image URLs, store at least one URL per destination; for others, set the image to the existing local fallback asset path (frontend/public assets already used by SafeImage)."
+          "description": "Add a typed macro-region identifier (e.g., 'north' | 'south' | 'east' | 'west' | 'northeast') to the Destination model; assign every destination exactly one macro-region; export helper utilities for filtering and counting by macro-region (with safe fallback for unknown region ids). Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/components/DestinationCard.tsx",
+          "path": "frontend/src/pages/DestinationsPage.tsx",
           "operation": "modify",
-          "description": "Confirm cards render destination images using the dataset-provided image (external URL or local path) through the existing SafeImage component so failures fall back to local generated assets."
-        },
-        {
-          "path": "frontend/src/pages/DestinationDetailPage.tsx",
-          "operation": "modify",
-          "description": "Update the hero image rendering to use SafeImage with the dataset-provided image URL/path so external URLs degrade gracefully to existing local fallback images without adding any backend proxy."
+          "description": "Switch region filtering logic to use the dataset’s macro-region identifier and the router search param, rather than matching against the existing human-readable state/area string; ensure unknown region ids do not default to North. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-5",
-      "summary": "Update Home page featured destinations to source from the canonical dataset and ensure featured items exist within the 50-place list.",
+      "id": "REQ-3",
+      "summary": "Expand destinations dataset with offbeat destinations in all five macro-regions, each with complete Pulga-style detail fields used by DestinationDetailPage.",
       "acceptanceCriteria": [
-        "Home page featured destinations are selected from the same canonical dataset used on /destinations.",
-        "Featured destination links resolve to valid /destinations/$slug routes for those featured items.",
-        "No separate hardcoded destination arrays remain on HomePage for featured destinations."
+        "The dataset in frontend/src/data/destinations.ts includes multiple destinations across all five macro-regions (north/south/east/west/northeast), not just North.",
+        "Every newly added destination renders a complete detail page with the exact same sections/layout as Pulga (no missing fields/sections).",
+        "From the destinations list, clicking any newly added destination opens its own unique detail content (not Pulga’s content)."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/data/destinations.ts",
+          "operation": "modify",
+          "description": "Add multiple new offbeat destinations for South/East/West/Northeast (and ensure North remains multi-destination), providing all fields required by DestinationDetailPage (tagline, heroImage, snapshot, detailedDescription, transport, accommodation, localTransport, budgetBreakdown, budgetTotal, faqs) and unique slugs/content per destination; ensure each new destination is assigned the correct macro-region. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Make the interactive region UI (tooltips/counts and region content) reflect live counts from the destinations dataset.",
+      "acceptanceCriteria": [
+        "Region destination counts displayed in the map tooltip match the number of destinations in that region in the shared dataset.",
+        "Adding/removing destinations in the dataset automatically changes the displayed counts without needing manual edits to hardcoded numbers.",
+        "The map remains functional and the selected element (the map image at the provided XPath) continues to render correctly."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/InteractiveIndiaMap.tsx",
+          "operation": "modify",
+          "description": "Remove hardcoded region counts and compute tooltip counts from the shared destinations dataset (via new exported helpers); keep the existing India map image rendering intact while ensuring marker tooltips show accurate per-region counts. Verify the component's usage instructions before implementing."
+        },
+        {
           "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "Remove the hardcoded featuredDestinations array and source featured items from the canonical dataset (e.g., by selecting a fixed list of slugs that are guaranteed to exist in the 50-destination dataset). Ensure DestinationCard props are fed from the canonical entries and links resolve to valid /destinations/$slug routes."
+          "description": "Update any region-specific copy/sections that imply per-region counts or lists to derive counts from the shared dataset (or avoid hardcoded counts), keeping the UI consistent as destinations are added/removed. Verify the component's usage instructions before implementing."
         }
       ]
     }

@@ -1,75 +1,64 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T12:19:28.630Z",
+  "generatedAt": "2026-02-08T16:16:29.160Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 5,
-    "implemented": 5,
+    "total": 4,
+    "implemented": 4,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Create a single canonical frontend destinations dataset containing all 50 offbeat/hidden-gem places in India, with complete details for each place: Location, Why it’s special (significance), How to reach, Activities, Best time, and a Travel plan idea.",
+        "summary": "Fix the region-selection behavior so that clicking a region (North/South/East/West/Northeast) does not always show North India destinations; instead, it must show destinations for the clicked region.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/destinations.ts",
-          "frontend/src/data/destinationTypes.ts"
+          "frontend/src/components/InteractiveIndiaMap.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/DestinationsPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/data/destinations.ts",
-          "frontend/src/data/destinationTypes.ts"
+          "frontend/src/components/InteractiveIndiaMap.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/DestinationsPage.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Update the Destinations listing page to render all 50 destinations from the canonical dataset and ensure search/filter continues to work across the full dataset.",
+        "summary": "Implement region-aware filtering in the destinations flow using a consistent region identifier shared between the map and the destinations dataset (e.g., 'north' | 'south' | 'east' | 'west' | 'northeast'), so the UI can reliably filter destinations by macro-region instead of only by state name.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/data/destinations.ts",
           "frontend/src/pages/DestinationsPage.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/data/destinations.ts",
           "frontend/src/pages/DestinationsPage.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Update the Destination Detail page to load the destination based on the route slug and render the destination’s complete details sections: Location, Why it’s special (significance), How to reach, Activities, Best time, and Travel plan idea.",
+        "summary": "Add offbeat destinations to ALL macro-regions (North, South, East, West, Northeast) in the same Pulga-style detail format (i.e., each destination must include all detail page fields used by DestinationDetailPage: tagline, heroImage, snapshot, detailedDescription, transport, accommodation, localTransport, budgetBreakdown, budgetTotal, faqs).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/DestinationDetailPage.tsx",
-          "frontend/src/components/SafeImage.tsx"
+          "frontend/src/data/destinations.ts"
         ],
         "matchedFiles": [
-          "frontend/src/pages/DestinationDetailPage.tsx",
-          "frontend/src/components/SafeImage.tsx"
+          "frontend/src/data/destinations.ts"
         ]
       },
       {
         "id": "REQ-4",
-        "summary": "For destinations where the user supplied image URLs in the provided list, store and display at least one of those URLs per corresponding destination entry; for destinations without supplied image URLs, use the existing local fallback images.",
+        "summary": "Update the interactive region UI to reflect the actual destinations dataset per region (e.g., counts shown in tooltips and any region-specific sections), so displayed counts and region content stay consistent with the underlying data.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/destinations.ts",
-          "frontend/src/components/DestinationCard.tsx",
-          "frontend/src/pages/DestinationDetailPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/data/destinations.ts",
-          "frontend/src/components/DestinationCard.tsx",
-          "frontend/src/pages/DestinationDetailPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Update the Home page featured destinations section to source its items from the canonical destinations dataset (and ensure featured items exist within the 50-place list).",
-        "status": "implemented",
-        "plannedFiles": [
+          "frontend/src/components/InteractiveIndiaMap.tsx",
           "frontend/src/pages/HomePage.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/components/InteractiveIndiaMap.tsx",
           "frontend/src/pages/HomePage.tsx"
         ]
       }
@@ -80,17 +69,10 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/DestinationCard.tsx",
-    "frontend/src/components/SafeImage.tsx",
-    "frontend/src/components/SocialProofGallery.tsx",
-    "frontend/src/components/TagChip.tsx",
-    "frontend/src/data/destinationTypes.ts",
+    "frontend/src/components/InteractiveIndiaMap.tsx",
     "frontend/src/data/destinations.ts",
-    "frontend/src/index.css",
-    "frontend/src/pages/DestinationDetailPage.tsx",
     "frontend/src/pages/DestinationsPage.tsx",
     "frontend/src/pages/HomePage.tsx",
-    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

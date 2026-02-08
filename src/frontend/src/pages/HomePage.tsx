@@ -9,11 +9,7 @@ import InteractiveIndiaMap from '@/components/InteractiveIndiaMap';
 import SocialProofGallery from '@/components/SocialProofGallery';
 import MotionReveal from '@/components/MotionReveal';
 import { useParallax } from '@/hooks/useParallax';
-import destinations from '@/data/destinations';
-
-// Select featured destinations from the canonical dataset
-const featuredSlugs = ['gurez-valley', 'tirthan-valley', 'majuli', 'dzukou-valley', 'gandikota', 'kudremukh'];
-const featuredDestinations = destinations.filter(d => featuredSlugs.includes(d.slug));
+import { getFeaturedDestinations } from '@/data/destinations';
 
 const budgetCategories = [
   {
@@ -69,6 +65,7 @@ const resourceCards = [
 
 export default function HomePage() {
   const parallaxRef = useParallax({ speed: 0.3 });
+  const featuredDestinations = getFeaturedDestinations();
 
   return (
     <div className="flex flex-col">
@@ -94,7 +91,7 @@ export default function HomePage() {
           <div className="md:hidden">
             <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4">
               {featuredDestinations.map((destination, index) => (
-                <div key={destination.slug} className="flex-shrink-0 w-[85vw] snap-center">
+                <div key={destination.slug} className="shrink-0 w-[85vw] snap-center">
                   <MotionReveal delay={index * 50}>
                     <DestinationCard {...destination} />
                   </MotionReveal>
@@ -231,27 +228,6 @@ export default function HomePage() {
           <MotionReveal>
             <InteractiveIndiaMap />
           </MotionReveal>
-
-          {/* Region Sections */}
-          <div className="mt-24 space-y-16">
-            {['north', 'south', 'east', 'west', 'northeast'].map((region) => (
-              <div key={region} id={`region-${region}`} className="scroll-mt-24">
-                <MotionReveal>
-                  <h3 className="font-display text-3xl font-bold mb-8 capitalize">
-                    {region.replace('northeast', 'Northeast')} India
-                  </h3>
-                  <p className="text-muted-foreground mb-6">
-                    Discover hidden gems in {region} India with detailed guides and budget breakdowns.
-                  </p>
-                  <Button asChild variant="outline">
-                    <Link to="/destinations">
-                      Explore {region.charAt(0).toUpperCase() + region.slice(1)} Destinations
-                    </Link>
-                  </Button>
-                </MotionReveal>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -338,10 +314,10 @@ export default function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="text-lg px-8 py-6 h-auto bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                className="text-lg px-8 py-6 h-auto bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
               >
                 <Link to="/blog">
-                  Read Travel Guides
+                  Read Travel Stories
                 </Link>
               </Button>
             </div>

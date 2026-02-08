@@ -1,6 +1,6 @@
-import { Tent, Mountain, Waves, Palmtree, Trees, Users, Compass, Binoculars, Landmark } from 'lucide-react';
+import { Tent, Mountain, Waves, Palmtree, Trees } from 'lucide-react';
 
-export type TagType = 'Camping' | 'Trek' | 'Beach' | 'Valley' | 'Nature' | 'Culture' | 'Adventure' | 'Wildlife' | 'Heritage';
+export type TagType = 'Camping' | 'Trek' | 'Beach' | 'Valley' | 'Nature';
 
 interface TagChipProps {
   tag: TagType;
@@ -13,10 +13,6 @@ const tagConfig: Record<TagType, { icon: React.ElementType; className: string }>
   Beach: { icon: Waves, className: 'tag-beach' },
   Valley: { icon: Palmtree, className: 'tag-valley' },
   Nature: { icon: Trees, className: 'tag-nature' },
-  Culture: { icon: Users, className: 'tag-culture' },
-  Adventure: { icon: Compass, className: 'tag-adventure' },
-  Wildlife: { icon: Binoculars, className: 'tag-wildlife' },
-  Heritage: { icon: Landmark, className: 'tag-heritage' },
 };
 
 export default function TagChip({ tag, className = '' }: TagChipProps) {

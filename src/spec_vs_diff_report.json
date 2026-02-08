@@ -1,75 +1,34 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T12:19:28.627Z",
-  "summary": "Diff adds a new canonical destinations dataset/types and rewires Destinations, Destination Detail, and Home featured section to consume it, plus updates cards/images. However, there are likely gaps/risks: the dataset completeness (exactly 50) and specific image-URL coverage can’t be verified from the truncation, and there appears to be an import/export mismatch for the destinations module.",
+  "generatedAt": "2026-02-08T16:16:29.158Z",
+  "summary": "The diff updates the map to navigate with a macro-region search param and updates the destinations page to filter by that param, plus adds region-based destination counts to map tooltips. However, the diff evidence is insufficient to confirm that new offbeat destinations were added across all five macro-regions with complete Pulga-style detail fields, and it does not show explicit handling for unknown/unsupported region ids.",
   "missing_requirements": [
     {
-      "id": "REQ-1",
-      "requirement": "Canonical dataset contains exactly 50 destinations matching the user-provided list (1–50), with full required fields per destination, and reused everywhere without duplicated arrays.",
-      "reason": "The added dataset file is truncated; the diff evidence only shows the first few entries and does not prove there are exactly 50 items nor that all 50 have the required fields and match the provided list.",
+      "id": "REQ-2",
+      "requirement": "If an unknown/unsupported region id is encountered, the app falls back to showing all destinations (or a clear empty-state), and does not default to North India.",
+      "reason": "DestinationsPage casts the URL param to MacroRegion and unconditionally calls getDestinationsByMacroRegion(regionParam) when regionParam is present; the diff does not show validation or fallback behavior for unsupported values.",
       "evidence": [
-        "frontend/src/data/destinations.ts (truncated)"
+        "frontend/src/pages/DestinationsPage.tsx"
       ]
     },
     {
-      "id": "REQ-4",
-      "requirement": "For destinations with user-supplied image URLs (e.g., Gurez Valley, Tirthan Valley, Kalpa, Chitkul, Barot Valley, Chopta, Munsiyari, Dzukou Valley, Ziro Valley, Majuli), store and display at least one provided URL per corresponding destination.",
-      "reason": "Some of the example destinations show external image URLs (e.g., Gurez, Tirthan, Kalpa, Chitkul) but the dataset is truncated, so coverage for the rest of the specified destinations (Barot, Chopta, Munsiyari, Dzukou, Ziro, Majuli) cannot be confirmed from the diff summary.",
+      "id": "REQ-3",
+      "requirement": "Add offbeat destinations to ALL macro-regions (North, South, East, West, Northeast) in the same Pulga-style detail format (tagline, heroImage, snapshot, detailedDescription, transport, accommodation, localTransport, budgetBreakdown, budgetTotal, faqs).",
+      "reason": "The provided destinations.ts diff excerpt only shows the Pulga entry (macroRegion: 'north') and is truncated; there is no clear diff evidence of multiple newly added destinations spanning south/east/west/northeast with all required detail fields and unique content.",
       "evidence": [
         "frontend/src/data/destinations.ts (truncated)"
       ]
     }
   ],
-  "hallucinated_features": [
-    {
-      "description": "Large-scale design system/theme and Tailwind config updates (OKLCH color tokens, new shadows/keyframes, etc.).",
-      "reason": "The BuildRequest is about destination dataset + listing/detail/home wiring; it does not request broad styling/theme refactors.",
-      "evidence": [
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ]
-    },
-    {
-      "description": "New/updated Cinematic Hero, parallax enhancements, and additional home-page sections beyond sourcing featured destinations from the dataset.",
-      "reason": "REQ-5 only asks to source featured destinations from the canonical dataset; the diff summary indicates substantial new/changed homepage/hero behavior unrelated to the dataset requirement.",
-      "evidence": [
-        "frontend/src/pages/HomePage.tsx (truncated)",
-        "frontend/src/hooks/useParallax.ts",
-        "frontend/src/components/CinematicHero.tsx",
-        "frontend/src/components/HeroLineSketchOverlay.tsx (mentioned in summaries)"
-      ]
-    },
-    {
-      "description": "Added RippleButton component and empty React Query hook placeholder.",
-      "reason": "Not requested; no requirement mentions click ripple effects or introducing React Query placeholders.",
-      "evidence": [
-        "frontend/src/components/RippleButton.tsx",
-        "frontend/src/hooks/useQueries.ts"
-      ]
-    },
-    {
-      "description": "Footer attribution/linking changes (including attribution text).",
-      "reason": "Not part of any requirement; may be unrelated content/branding change.",
-      "evidence": [
-        "frontend/src/components/SiteFooter.tsx (described in frontend-file-summaries.txt)"
-      ]
-    }
-  ],
-  "confidence": 0.64,
+  "hallucinated_features": [],
+  "confidence": 0.62,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/DestinationCard.tsx",
-    "frontend/src/components/SafeImage.tsx",
-    "frontend/src/components/SocialProofGallery.tsx",
-    "frontend/src/components/TagChip.tsx",
-    "frontend/src/data/destinationTypes.ts",
+    "frontend/src/components/InteractiveIndiaMap.tsx",
     "frontend/src/data/destinations.ts",
-    "frontend/src/index.css",
-    "frontend/src/pages/DestinationDetailPage.tsx",
     "frontend/src/pages/DestinationsPage.tsx",
     "frontend/src/pages/HomePage.tsx",
-    "frontend/tailwind.config.js",
     "project_state.json"
   ]
 }

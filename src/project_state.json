@@ -1,48 +1,42 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Content project: create a structured travel guide of 50 offbeat/hidden gem places in India with complete details per place (location, significance, how to reach, activities, best time, travel plan idea).",
+  "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Bug: Clicking on any region shows only North India destinations (region filtering/routing not working correctly)."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-create-a-single-canonical-frontend-destinations-dataset-containing-all-50-offbeat-hidden-gem-places-in-india-with-complete-details-for-each-place-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-a-travel-plan-idea",
-      "title": "Create a single canonical frontend destinations dataset containing all 50 offbeat/hidden-gem places in India, with complete details for each place: Location, Why it’s special (significance), How to reach, Activities, Best time, and a Travel plan idea.",
+      "id": "feature-fix-the-region-selection-behavior-so-that-clicking-a-region-north-south-east-west-northeast-does-not-always-show-north-india-destinations-instead-it-must-show-destinations-for-the-clicked-region",
+      "title": "Fix the region-selection behavior so that clicking a region (North/South/East/West/Northeast) does not always show North India destinations; instead, it must show destinations for the clicked region.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-update-the-destinations-listing-page-to-render-all-50-destinations-from-the-canonical-dataset-and-ensure-search-filter-continues-to-work-across-the-full-dataset",
-      "title": "Update the Destinations listing page to render all 50 destinations from the canonical dataset and ensure search/filter continues to work across the full dataset.",
+      "id": "feature-implement-region-aware-filtering-in-the-destinations-flow-using-a-consistent-region-identifier-shared-between-the-map-and-the-destinations-dataset-e-g-north-south-east-west-northeast-so-the-ui-can-reliably-filter-destinations-by-macro-region-instead-of-only-by-state-name",
+      "title": "Implement region-aware filtering in the destinations flow using a consistent region identifier shared between the map and the destinations dataset (e.g., 'north' | 'south' | 'east' | 'west' | 'northeast'), so the UI can reliably filter destinations by macro-region instead of only by state name.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-update-the-destination-detail-page-to-load-the-destination-based-on-the-route-slug-and-render-the-destination-s-complete-details-sections-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-travel-plan-idea",
-      "title": "Update the Destination Detail page to load the destination based on the route slug and render the destination’s complete details sections: Location, Why it’s special (significance), How to reach, Activities, Best time, and Travel plan idea.",
+      "id": "feature-add-offbeat-destinations-to-all-macro-regions-north-south-east-west-northeast-in-the-same-pulga-style-detail-format-i-e-each-destination-must-include-all-detail-page-fields-used-by-destinationdetailpage-tagline-heroimage-snapshot-detaileddescription-transport-accommodation-localtransport-budgetbreakdown-budgettotal-faqs",
+      "title": "Add offbeat destinations to ALL macro-regions (North, South, East, West, Northeast) in the same Pulga-style detail format (i.e., each destination must include all detail page fields used by DestinationDetailPage: tagline, heroImage, snapshot, detailedDescription, transport, accommodation, localTransport, budgetBreakdown, budgetTotal, faqs).",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-for-destinations-where-the-user-supplied-image-urls-in-the-provided-list-store-and-display-at-least-one-of-those-urls-per-corresponding-destination-entry-for-destinations-without-supplied-image-urls-use-the-existing-local-fallback-images",
-      "title": "For destinations where the user supplied image URLs in the provided list, store and display at least one of those URLs per corresponding destination entry; for destinations without supplied image URLs, use the existing local fallback images.",
+      "id": "feature-update-the-interactive-region-ui-to-reflect-the-actual-destinations-dataset-per-region-e-g-counts-shown-in-tooltips-and-any-region-specific-sections-so-displayed-counts-and-region-content-stay-consistent-with-the-underlying-data",
+      "title": "Update the interactive region UI to reflect the actual destinations dataset per region (e.g., counts shown in tooltips and any region-specific sections), so displayed counts and region content stay consistent with the underlying data.",
       "reqIds": [
         "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-home-page-featured-destinations-section-to-source-its-items-from-the-canonical-destinations-dataset-and-ensure-featured-items-exist-within-the-50-place-list",
-      "title": "Update the Home page featured destinations section to source its items from the canonical destinations dataset (and ensure featured items exist within the 50-place list).",
-      "reqIds": [
-        "REQ-5"
       ],
       "version": 1
     }
@@ -50,12 +44,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Expand the provided list of 50 offbeat/hidden gem places in India into complete entries with full details (location, why special, how to reach, activities, best time, travel plan idea) for each place.",
+      "summary": "Add offbeat destinations for all regions, in the same Pulga-style details format",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Add complete 50-place Hidden Gems India destination dataset and render full details across listing and detail pages",
+  "projectName": "Fix region selection so each India region shows its own destinations + add offbeat destinations for all regions (Pulga-style details)",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

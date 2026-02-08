@@ -2,11 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-single-canonical-frontend-destinations-dataset-containing-all-50-offbeat-hidden-gem-places-in-india-with-complete-details-for-each-place-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-a-travel-plan-idea",
-      "featureTitle": "Create a single canonical frontend destinations dataset containing all 50 offbeat/hidden-gem places in India, with complete details for each place: Location, Why it’s special (significance), How to reach, Activities, Best time, and a Travel plan idea.",
+      "featureId": "feature-fix-the-region-selection-behavior-so-that-clicking-a-region-north-south-east-west-northeast-does-not-always-show-north-india-destinations-instead-it-must-show-destinations-for-the-clicked-region",
+      "featureTitle": "Fix the region-selection behavior so that clicking a region (North/South/East/West/Northeast) does not always show North India destinations; instead, it must show destinations for the clicked region.",
       "files": [
-        "frontend/src/data/destinationTypes.ts",
-        "frontend/src/data/destinations.ts"
+        "frontend/src/components/InteractiveIndiaMap.tsx",
+        "frontend/src/pages/DestinationsPage.tsx",
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -21,9 +22,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-destinations-listing-page-to-render-all-50-destinations-from-the-canonical-dataset-and-ensure-search-filter-continues-to-work-across-the-full-dataset",
-      "featureTitle": "Update the Destinations listing page to render all 50 destinations from the canonical dataset and ensure search/filter continues to work across the full dataset.",
+      "featureId": "feature-implement-region-aware-filtering-in-the-destinations-flow-using-a-consistent-region-identifier-shared-between-the-map-and-the-destinations-dataset-e-g-north-south-east-west-northeast-so-the-ui-can-reliably-filter-destinations-by-macro-region-instead-of-only-by-state-name",
+      "featureTitle": "Implement region-aware filtering in the destinations flow using a consistent region identifier shared between the map and the destinations dataset (e.g., 'north' | 'south' | 'east' | 'west' | 'northeast'), so the UI can reliably filter destinations by macro-region instead of only by state name.",
       "files": [
+        "frontend/src/data/destinations.ts",
         "frontend/src/pages/DestinationsPage.tsx"
       ],
       "components": [
@@ -39,11 +41,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-destination-detail-page-to-load-the-destination-based-on-the-route-slug-and-render-the-destination-s-complete-details-sections-location-why-it-s-special-significance-how-to-reach-activities-best-time-and-travel-plan-idea",
-      "featureTitle": "Update the Destination Detail page to load the destination based on the route slug and render the destination’s complete details sections: Location, Why it’s special (significance), How to reach, Activities, Best time, and Travel plan idea.",
+      "featureId": "feature-add-offbeat-destinations-to-all-macro-regions-north-south-east-west-northeast-in-the-same-pulga-style-detail-format-i-e-each-destination-must-include-all-detail-page-fields-used-by-destinationdetailpage-tagline-heroimage-snapshot-detaileddescription-transport-accommodation-localtransport-budgetbreakdown-budgettotal-faqs",
+      "featureTitle": "Add offbeat destinations to ALL macro-regions (North, South, East, West, Northeast) in the same Pulga-style detail format (i.e., each destination must include all detail page fields used by DestinationDetailPage: tagline, heroImage, snapshot, detailedDescription, transport, accommodation, localTransport, budgetBreakdown, budgetTotal, faqs).",
       "files": [
-        "frontend/src/components/SafeImage.tsx",
-        "frontend/src/pages/DestinationDetailPage.tsx"
+        "frontend/src/data/destinations.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -58,29 +59,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-for-destinations-where-the-user-supplied-image-urls-in-the-provided-list-store-and-display-at-least-one-of-those-urls-per-corresponding-destination-entry-for-destinations-without-supplied-image-urls-use-the-existing-local-fallback-images",
-      "featureTitle": "For destinations where the user supplied image URLs in the provided list, store and display at least one of those URLs per corresponding destination entry; for destinations without supplied image URLs, use the existing local fallback images.",
+      "featureId": "feature-update-the-interactive-region-ui-to-reflect-the-actual-destinations-dataset-per-region-e-g-counts-shown-in-tooltips-and-any-region-specific-sections-so-displayed-counts-and-region-content-stay-consistent-with-the-underlying-data",
+      "featureTitle": "Update the interactive region UI to reflect the actual destinations dataset per region (e.g., counts shown in tooltips and any region-specific sections), so displayed counts and region content stay consistent with the underlying data.",
       "files": [
-        "frontend/src/components/DestinationCard.tsx",
-        "frontend/src/data/destinations.ts",
-        "frontend/src/pages/DestinationDetailPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-home-page-featured-destinations-section-to-source-its-items-from-the-canonical-destinations-dataset-and-ensure-featured-items-exist-within-the-50-place-list",
-      "featureTitle": "Update the Home page featured destinations section to source its items from the canonical destinations dataset (and ensure featured items exist within the 50-place list).",
-      "files": [
+        "frontend/src/components/InteractiveIndiaMap.tsx",
         "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
@@ -91,7 +73,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-5"
+        "REQ-4"
       ],
       "confidence": "high"
     }
